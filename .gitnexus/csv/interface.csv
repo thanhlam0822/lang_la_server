@@ -1,0 +1,114 @@
+id,name,filePath,startLine,endLine,isExported,content,description
+"Interface:src/org/jdesktop/animation/timing/TimingTarget.java:TimingTarget","TimingTarget","src/org/jdesktop/animation/timing/TimingTarget.java",2,10,true,"package org.jdesktop.animation.timing;
+
+public interface TimingTarget {
+   void timingEvent(float var1);
+
+   void begin();
+
+   void end();
+
+   void repeat();
+}
+",""
+"Interface:src/org/jdesktop/animation/timing/TimingEventListener.java:TimingEventListener","TimingEventListener","src/org/jdesktop/animation/timing/TimingEventListener.java",2,4,true,"package org.jdesktop.animation.timing;
+
+public interface TimingEventListener {
+   void timingSourceEvent(TimingSource var1);
+}
+",""
+"Interface:src/org/jdesktop/animation/timing/interpolation/Interpolator.java:Interpolator","Interpolator","src/org/jdesktop/animation/timing/interpolation/Interpolator.java",2,4,true,"package org.jdesktop.animation.timing.interpolation;
+
+public interface Interpolator {
+   float interpolate(float var1);
+}
+",""
+"Interface:src/com/langla/server/main/PKoolVNResultSet.java:PKoolVNResultSet","PKoolVNResultSet","src/com/langla/server/main/PKoolVNResultSet.java",9,65,true,"
+
+public interface PKoolVNResultSet {
+    byte getByte(int var1) throws Exception;
+
+    byte getByte(String var1) throws Exception;
+
+    int getInt(int var1) throws Exception;
+
+    int getInt(String var1) throws Exception;
+
+    short getShort(int var1) throws Exception;
+
+    short getShort(String var1) throws Exception;
+
+    float getFloat(int var1) throws Exception;
+
+    float getFloat(String var1) throws Exception;
+
+    double getDouble(int var1) throws Exception;
+
+    double getDouble(String var1) throws Exception;
+
+    long getLong(int var1) throws Exception;
+
+    long getLong(String var1) throws Exception;
+
+    String getString(int var1) throws Exception;
+
+    String getString(String var1) throws Exception;
+
+    boolean getBoolean(int var1) throws Exception;
+
+    boolean getBoolean(String var1) throws Exception;
+
+    Object getObject(int var1) throws Exception;
+
+    Object getObject(String var1) throws Exception;
+
+    Timestamp getTimestamp(int var1) throws Exception;
+
+    Timestamp getTimestamp(String var1) throws Exception;
+
+    void dispose();
+
+    boolean next() throws Exception;
+
+    boolean first() throws Exception;
+
+    boolean gotoResult(int var1) throws Exception;
+
+    boolean gotoFirst() throws Exception;
+
+    void gotoBeforeFirst();
+
+    boolean gotoLast() throws Exception;
+
+    int getRows() throws Exception;
+}
+",""
+"Interface:src/com/langla/server/handler/ServerSocketHandler.java:ServerSocketHandler","ServerSocketHandler","src/com/langla/server/handler/ServerSocketHandler.java",4,8,true,"import java.net.Socket;
+
+public interface ServerSocketHandler {
+
+    void socketConnet(Socket socket);
+   
+}
+",""
+"Interface:src/com/langla/server/handler/IMessageHandler.java:IMessageHandler","IMessageHandler","src/com/langla/server/handler/IMessageHandler.java",4,7,true,"import com.langla.server.lib.Message;
+
+public interface IMessageHandler {
+
+    void readMessage(Message var1);
+}
+",""
+"Interface:src/com/langla/server/handler/IActionNpc.java:IActionNpc","IActionNpc","src/com/langla/server/handler/IActionNpc.java",4,7,true,"import com.langla.real.player.Client;
+
+public interface IActionNpc {
+
+    void action(Client client);
+}
+",""
+"Interface:src/com/langla/server/handler/IActionItem.java:IActionItem","IActionItem","src/com/langla/server/handler/IActionItem.java",12,15,true," * @author PKoolVN
+ **/
+public interface IActionItem {
+    
+    void action(Client client);
+}
+",""

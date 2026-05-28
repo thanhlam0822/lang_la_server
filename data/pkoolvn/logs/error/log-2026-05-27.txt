@@ -1,0 +1,65 @@
+Timestamp: Wed May 27 23:46:05 ICT 2026
+Da say ra loi:
+Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+java.sql.SQLException: Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.first(ResultSetImpl.java:617)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.first(HikariProxyResultSet.java)
+	at com.langla.real.player.Player.login(Player.java:32)
+	at com.langla.real.player.Session$1.readMessage123(Session.java:1383)
+	at com.langla.real.player.Session$1.readMessage(Session.java:315)
+	at com.langla.real.player.Session.lambda$new$1(Session.java:261)
+	at java.lang.Thread.run(Thread.java:750)
+Timestamp: Wed May 27 23:57:27 ICT 2026
+Da say ra loi:
+Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+java.sql.SQLException: Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.first(ResultSetImpl.java:617)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.first(HikariProxyResultSet.java)
+	at com.langla.real.player.Player.login(Player.java:32)
+	at com.langla.real.player.Session$1.readMessage123(Session.java:1383)
+	at com.langla.real.player.Session$1.readMessage(Session.java:315)
+	at com.langla.real.player.Session.lambda$new$1(Session.java:261)
+	at java.lang.Thread.run(Thread.java:750)
+Timestamp: Wed May 27 23:57:40 ICT 2026
+Da say ra loi:
+Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+java.sql.SQLException: Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.first(ResultSetImpl.java:617)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.first(HikariProxyResultSet.java)
+	at com.langla.real.player.Player.login(Player.java:32)
+	at com.langla.real.player.Session$1.readMessage123(Session.java:1383)
+	at com.langla.real.player.Session$1.readMessage(Session.java:315)
+	at com.langla.real.player.Session.lambda$new$1(Session.java:261)
+	at java.lang.Thread.run(Thread.java:750)
+Timestamp: Wed May 27 23:57:55 ICT 2026
+Da say ra loi:
+Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+java.sql.SQLException: Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.first(ResultSetImpl.java:617)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.first(HikariProxyResultSet.java)
+	at com.langla.real.player.Player.login(Player.java:32)
+	at com.langla.real.player.Session$1.readMessage123(Session.java:1383)
+	at com.langla.real.player.Session$1.readMessage(Session.java:315)
+	at com.langla.real.player.Session.lambda$new$1(Session.java:261)
+	at java.lang.Thread.run(Thread.java:750)
+Timestamp: Wed May 27 23:59:01 ICT 2026
+Co loi tai:
+Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+java.sql.SQLException: Operation not allowed for a result set of type ResultSet.TYPE_FORWARD_ONLY.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.result.ResultSetImpl.first(ResultSetImpl.java:617)
+	at com.zaxxer.hikari.pool.HikariProxyResultSet.first(HikariProxyResultSet.java)
+	at com.langla.real.player.CharDB.CheckNameChar(CharDB.java:185)
+	at com.langla.real.player.Session$1.readMessage123(Session.java:1418)
+	at com.langla.real.player.Session$1.readMessage(Session.java:315)
+	at com.langla.real.player.Session.lambda$new$1(Session.java:261)
+	at java.lang.Thread.run(Thread.java:750)

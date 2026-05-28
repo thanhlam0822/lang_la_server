@@ -1,0 +1,32 @@
+id,name,filePath,startLine,endLine,content,description
+"Enum:table/TableCustom.java:TableType","TableType","table/TableCustom.java",73,75,"    }
+
+    public static enum TableType {
+        MULTI_LINE, DEFAULT
+    }
+}
+",""
+"Enum:org/jdesktop/animation/timing/Animator.java:RepeatBehavior","RepeatBehavior","org/jdesktop/animation/timing/Animator.java",512,515,"   }
+
+   public static enum RepeatBehavior {
+      LOOP,
+      REVERSE;
+   }
+
+   public static enum Direction {",""
+"Enum:org/jdesktop/animation/timing/Animator.java:Direction","Direction","org/jdesktop/animation/timing/Animator.java",517,520,"   }
+
+   public static enum Direction {
+      FORWARD,
+      BACKWARD;
+   }
+
+   public static enum EndBehavior {",""
+"Enum:org/jdesktop/animation/timing/Animator.java:EndBehavior","EndBehavior","org/jdesktop/animation/timing/Animator.java",522,525,"   }
+
+   public static enum EndBehavior {
+      HOLD,
+      RESET;
+   }
+}
+",""
