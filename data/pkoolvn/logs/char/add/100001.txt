@@ -116,3 +116,335 @@ ADD VÀNG KHÓA +10000, tổng: 10000 lý do: New game, TIME: 27/05/2026 23:59 P
 
 ADD ITEM BAG NEW Rương cải trang, SL: 100 lý do: New game, TIME: 27/05/2026 23:59 PM
 
+ADD ITEM BAG XẾP CHỒNG NEW Bình HP cấp 1, SL: 50 lý do: Nhiệm vụ, TIME: 28/05/2026 08:49 AM
+
+ADD BẠC KHÓA +200, tổng: 100000200 lý do: Nhiệm vụ, TIME: 28/05/2026 08:49 AM
+
+ADD ITEM BAG XẾP CHỒNG NEW Cừu con, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:49 AM
+
+ADD BẠC KHÓA +7, tổng: 100000207 lý do: Nhặt từ Map, TIME: 28/05/2026 08:49 AM
+
+ADD BẠC KHÓA +11, tổng: 100000218 lý do: Nhặt từ Map, TIME: 28/05/2026 08:49 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 2 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:49 AM
+
+ADD BẠC KHÓA +1, tổng: 100000219 lý do: Nhặt từ Map, TIME: 28/05/2026 08:49 AM
+
+ADD ITEM BAG NEW Vô hạn Di Chuyển phù, SL: 1 lý do: Mua từ shop, TIME: 28/05/2026 08:50 AM
+
+ADD BẠC KHÓA +5, tổng: 100000224 lý do: Nhặt từ Map, TIME: 28/05/2026 08:50 AM
+
+ADD BẠC KHÓA +7, tổng: 100000231 lý do: Nhặt từ Map, TIME: 28/05/2026 08:50 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 3 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:50 AM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:50 AM
+
+ADD BẠC KHÓA +2, tổng: 100000233 lý do: Nhặt từ Map, TIME: 28/05/2026 08:50 AM
+
+ADD VÀNG +113636, tổng: 113636 lý do: Quy đổi từ VND, TIME: 28/05/2026 08:50 AM
+
+ADD ITEM BAG NEW Danh hiệu Nhẫn Giả, SL: 1 lý do: Nhận từ thư: Quà nạp lần đầu, TIME: 28/05/2026 08:50 AM
+
+ADD ITEM BAG NEW Rương vũ khí cấp 10, SL: 1 lý do: Nhận từ thư: Quà nạp lần đầu, TIME: 28/05/2026 08:50 AM
+
+ADD ITEM BAG NEW Cải trang Nagato, SL: 1 lý do: Nhận từ thư: Quà nạp lần đầu, TIME: 28/05/2026 08:50 AM
+
+ADD ITEM BAG XẾP CHỒNG NEW Rương đá, SL: 20 lý do: Nhận từ thư: Quà nạp lần đầu, TIME: 28/05/2026 08:50 AM
+
+ADD BẠC KHÓA +11, tổng: 100000244 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +9, tổng: 100000253 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +9, tổng: 100000262 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +1, tổng: 100000263 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 4 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +9, tổng: 100000272 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +1, tổng: 100000273 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +7, tổng: 100000280 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +2, tổng: 100000282 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +4, tổng: 100000286 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 5 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +1, tổng: 100000287 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +7, tổng: 100000294 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 6 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +7, tổng: 100000301 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 7 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +6, tổng: 100000307 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +4, tổng: 100000311 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 8 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 9 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 10 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:51 AM
+
+ADD BẠC KHÓA +2, tổng: 100000313 lý do: Nhặt từ Map, TIME: 28/05/2026 08:51 AM
+
+ADD ITEM BAG Xếp chồng Cừu con, SL: 11 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 08:52 AM
+
+ADD ITEM BAG XẾP CHỒNG NEW Bình MP cấp 1, SL: 50 lý do: Nhiệm vụ, TIME: 28/05/2026 08:52 AM
+
+ADD BẠC KHÓA +400, tổng: 100000713 lý do: Nhiệm vụ, TIME: 28/05/2026 08:52 AM
+
+ADD BẠC KHÓA +2, tổng: 100000715 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +8, tổng: 100000723 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +11, tổng: 100000734 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Cây Thược Dược, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +2, tổng: 100000736 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 2 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 3 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 4 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 5 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +11, tổng: 100000747 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 6 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +8, tổng: 100000755 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +10, tổng: 100000765 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 7 lý do: Nhặt từ Map: 75, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +2, tổng: 100000767 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD BẠC KHÓA +5, tổng: 100000772 lý do: Nhặt từ Map, TIME: 28/05/2026 16:05 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 8 lý do: Nhiệm vụ, TIME: 28/05/2026 17:54 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 9 lý do: Nhiệm vụ, TIME: 28/05/2026 17:54 PM
+
+ADD ITEM BAG Xếp chồng Cây Thược Dược, SL: 10 lý do: Nhiệm vụ, TIME: 28/05/2026 17:54 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Bình HP cấp 20, SL: 100 lý do: Nhiệm vụ, TIME: 28/05/2026 17:55 PM
+
+ADD BẠC KHÓA +600, tổng: 100001372 lý do: Nhiệm vụ, TIME: 28/05/2026 17:55 PM
+
+ADD VÀNG +113636, tổng: 227272 lý do: Quy đổi từ VND, TIME: 28/05/2026 18:25 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Mì xào, SL: 1 lý do: Mua từ shop, TIME: 28/05/2026 18:26 PM
+
+ADD BẠC KHÓA +6, tổng: 100001178 lý do: Nhặt từ Map, TIME: 28/05/2026 18:26 PM
+
+ADD BẠC KHÓA +2, tổng: 100001180 lý do: Nhặt từ Map, TIME: 28/05/2026 18:26 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:26 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:26 PM
+
+ADD BẠC KHÓA +1, tổng: 100001181 lý do: Nhặt từ Map, TIME: 28/05/2026 18:27 PM
+
+ADD BẠC KHÓA +4, tổng: 100001185 lý do: Nhặt từ Map, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Rắn tím, SL: 1 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG Xếp chồng Rắn tím, SL: 2 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG Xếp chồng Rắn tím, SL: 3 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Nhân sâm (thượng hạng), SL: 1 lý do: Mua từ shop, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG Xếp chồng Nhân sâm (thượng hạng), SL: 2 lý do: Mua từ shop, TIME: 28/05/2026 18:27 PM
+
+ADD BẠC KHÓA +9, tổng: 100001194 lý do: Nhặt từ Map, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG Xếp chồng Rắn tím, SL: 4 lý do: Nhặt từ Map: 82, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Bình MP cấp 20, SL: 100 lý do: Nhiệm vụ, TIME: 28/05/2026 18:27 PM
+
+ADD BẠC KHÓA +800, tổng: 100001994 lý do: Nhiệm vụ, TIME: 28/05/2026 18:27 PM
+
+ADD ITEM BAG NEW Đá cấp 5, SL: 1 lý do: Nhiệm vụ, TIME: 28/05/2026 18:28 PM
+
+ADD BẠC KHÓA +1000, tổng: 100002994 lý do: Nhiệm vụ, TIME: 28/05/2026 18:28 PM
+
+ADD ITEM BAG NEW Cải trang Thánh Gióng, SL: 1 lý do: Mở từ rương cải trang, TIME: 28/05/2026 18:29 PM
+
+ADD VÀNG +113636, tổng: 340860 lý do: Quy đổi từ VND, TIME: 28/05/2026 18:29 PM
+
+ADD VÀNG +113636, tổng: 454496 lý do: Quy đổi từ VND, TIME: 29/05/2026 23:55 PM
+
+ADD VÀNG KHÓA +100, tổng: 10070 lý do: Mua gói thẻ tháng, TIME: 29/05/2026 23:55 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 3, SL: 1 lý do: Mua từ shop, TIME: 29/05/2026 23:56 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 3, SL: 1 lý do: Mua từ shop, TIME: 29/05/2026 23:56 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 3, SL: 1 lý do: Mua từ shop, TIME: 29/05/2026 23:56 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 1, SL: 1 lý do: Mua từ shop, TIME: 29/05/2026 23:56 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 1, SL: 1 lý do: Mua từ shop, TIME: 29/05/2026 23:56 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 1, SL: 1 lý do: Mua từ shop, TIME: 29/05/2026 23:56 PM
+
+ADD VÀNG KHÓA +30, tổng: 10100 lý do: Thẻ tháng hàng ngày, TIME: 30/05/2026 00:02 AM
+
+ADD VÀNG KHÓA +20, tổng: 10120 lý do: Thẻ vĩnh viễn hàng ngày, TIME: 30/05/2026 00:02 AM
+
+ADD VÀNG KHÓA +30, tổng: 10150 lý do: Thẻ tháng hàng ngày, TIME: 01/06/2026 20:14 PM
+
+ADD VÀNG KHÓA +20, tổng: 10170 lý do: Thẻ vĩnh viễn hàng ngày, TIME: 01/06/2026 20:14 PM
+
+ADD VÀNG KHÓA +30, tổng: 10200 lý do: Thẻ tháng hàng ngày, TIME: 06/06/2026 11:02 AM
+
+ADD VÀNG KHÓA +20, tổng: 10220 lý do: Thẻ vĩnh viễn hàng ngày, TIME: 06/06/2026 11:02 AM
+
+ADD VÀNG KHÓA +30, tổng: 10200 lý do: Thẻ tháng hàng ngày, TIME: 06/06/2026 11:08 AM
+
+ADD VÀNG KHÓA +20, tổng: 10220 lý do: Thẻ vĩnh viễn hàng ngày, TIME: 06/06/2026 11:08 AM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 1, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 11:38 AM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 2, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 11:38 AM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 3, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 15:50 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Rương Tinh Thạch, SL: 1 lý do: Mở rank, TIME: 06/06/2026 15:51 PM
+
+ADD ITEM BAG Xếp chồng Rương đá, SL: 21 lý do: Mở rank, TIME: 06/06/2026 15:51 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Từ bi kinh, SL: 5 lý do: Mở rank, TIME: 06/06/2026 15:51 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 4, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 15:53 PM
+
+ADD ITEM BAG Xếp chồng Rương Tinh Thạch, SL: 6 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:39 PM
+
+ADD BẠC KHÓA +100000, tổng: 100102994 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:40 PM
+
+ADD BẠC KHÓA +100000000, tổng: 200102994 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:47 PM
+
+ADD ITEM BAG Xếp chồng Rương đá, SL: 171 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:47 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Rương ngọc khảm, SL: 100 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:47 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Sách kỹ năng chiến đấu, SL: 2 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:47 PM
+
+ADD ITEM BAG NEW Cải trang Orochimaru, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:47 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 5, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:47 PM
+
+ADD BẠC KHÓA +500000, tổng: 200602994 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 6, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 7, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 8, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 9, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Gói ưu đãi Rank 10, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Cải trang Killer B, SL: 1 lý do: Nhận phúc lợi, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Nhân sâm (thượng hạng), SL: 5 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Đá cấp 8, SL: 1 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG Xếp chồng Rương đá, SL: 186 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG Xếp chồng Rương Tinh Thạch, SL: 16 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Sách kỹ năng (Cao), SL: 1 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Sách tiềm năng (Cao), SL: 1 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Danh hiệu Lục Đạo, SL: 1 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Cải trang Lục Đạo, SL: 1 lý do: Mở rank, TIME: 06/06/2026 16:55 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 06/06/2026 22:43 PM
+
+ADD BẠC KHÓA +11, tổng: 200603005 lý do: Nhặt từ Map, TIME: 06/06/2026 22:43 PM
+
+ADD BẠC KHÓA +6, tổng: 200603011 lý do: Nhặt từ Map, TIME: 06/06/2026 22:43 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 06/06/2026 22:43 PM
+
+ADD BẠC KHÓA +11, tổng: 200603022 lý do: Nhặt từ Map, TIME: 06/06/2026 22:43 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 06/06/2026 22:44 PM
+
+ADD BẠC KHÓA +5, tổng: 200603027 lý do: Nhặt từ Map, TIME: 06/06/2026 22:44 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 06/06/2026 22:44 PM
+
+ADD BẠC KHÓA +8, tổng: 200603035 lý do: Nhặt từ Map, TIME: 06/06/2026 22:44 PM
+
+ADD ITEM BAG NEW Đá cấp 1, SL: 1 lý do: Nhặt từ Map: 82, TIME: 06/06/2026 22:44 PM
+
+ADD BẠC KHÓA +10, tổng: 200603045 lý do: Nhặt từ Map, TIME: 06/06/2026 22:44 PM
+
+ADD ITEM BAG NEW Vô hạn Di Chuyển phù, SL: 1 lý do: Mua từ shop, TIME: 06/06/2026 22:44 PM
+
+ADD ITEM BAG NEW Đá cấp 2, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+ADD ITEM BAG NEW Đá cấp 2, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+ADD ITEM BAG NEW Đá cấp 2, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+ADD ITEM BAG NEW Đá cấp 3, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+ADD ITEM BAG XẾP CHỒNG NEW Túi thực phẩm, SL: 1 lý do: Nhiệm vụ, TIME: 06/06/2026 22:45 PM
+
+ADD BẠC KHÓA +2000, tổng: 200604811 lý do: Nhiệm vụ, TIME: 06/06/2026 22:45 PM
+
+ADD ITEM BAG NEW Cờ cảnh báo, SL: 3 lý do: Nhiệm vụ, TIME: 06/06/2026 22:45 PM
+
+ADD VÀNG KHÓA +30, tổng: 10220 lý do: Thẻ tháng hàng ngày, TIME: 11/06/2026 22:36 PM
+
+ADD VÀNG KHÓA +20, tổng: 10240 lý do: Thẻ vĩnh viễn hàng ngày, TIME: 11/06/2026 22:36 PM
+
+ADD ITEM BAG NEW Túi mở rộng cấp 1, SL: 1 lý do: Nhiệm vụ, TIME: 11/06/2026 22:37 PM
+
+ADD BẠC KHÓA +3000, tổng: 200607811 lý do: Nhiệm vụ, TIME: 11/06/2026 22:37 PM
+
+ADD VÀNG KHÓA +5, tổng: 10245 lý do: Nhận phúc lợi, TIME: 11/06/2026 22:37 PM
+
+ADD VÀNG KHÓA +10, tổng: 10255 lý do: Nhận phúc lợi, TIME: 11/06/2026 22:37 PM
+
+ADD VÀNG KHÓA +15, tổng: 10270 lý do: Nhận phúc lợi, TIME: 11/06/2026 22:37 PM
+
+ADD VÀNG KHÓA +20, tổng: 10290 lý do: Nhận phúc lợi, TIME: 11/06/2026 22:37 PM
+
+ADD VÀNG KHÓA +30, tổng: 10320 lý do: Nhận phúc lợi, TIME: 11/06/2026 22:37 PM
+
+ADD VÀNG KHÓA +25, tổng: 10345 lý do: Nhận phúc lợi, TIME: 11/06/2026 22:37 PM
+

@@ -34,13 +34,16 @@ import com.langla.server.lib.Reader;
 import com.langla.server.lib.Writer;
 import com.langla.server.main.Maintenance;
 import com.langla.utlis.UTPKoolVN;
+
 import java.net.Socket;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.regex.Pattern;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Session{
+public class Session {
 
     @JsonIgnore
     public Client client;
@@ -68,7 +71,8 @@ public class Session{
     public Serivce serivce;
     @JsonIgnore
 
-    public long timeConnect = System.currentTimeMillis()+60000;
+    public long timeConnect = System.currentTimeMillis() + 60000;
+
     @JsonIgnore
     public Session(Client client) {
 
@@ -80,8 +84,8 @@ public class Session{
             threadSend = new Thread(()
                     -> {
                 while (this.isConnected()) {
-                    if(this.client == null || this.client.player == null || client.session == null){
-                        if (timeConnect < System.currentTimeMillis()){
+                    if (this.client == null || this.client.player == null || client.session == null) {
+                        if (timeConnect < System.currentTimeMillis()) {
                             clean();
                             return;
                         }
@@ -268,6 +272,7 @@ public class Session{
             });
             handler = new IMessageHandler() {
                 private long long_38;
+
                 @Override
                 public void readMessage(Message msg) {
                     try {
@@ -285,11 +290,11 @@ public class Session{
                             case -122:
                                 // login game
                                 int mess127 = msg.readByte();
-                                if(mess127 == -127){
+                                if (mess127 == -127) {
                                     int idshortchar = msg.readByte();
-                                    if(client.mChar == null || client.player.CharacterID <= 0) break;
+                                    if (client.mChar == null || client.player.CharacterID <= 0) break;
                                     Session.this.serivce.sendChar();
-                                    client.mChar.setXY(client.mChar.infoChar.cx,  client.mChar.infoChar.cy);
+                                    client.mChar.setXY(client.mChar.infoChar.cx, client.mChar.infoChar.cy);
                                     Map.maps[client.mChar.infoChar.mapId].addChar(client);
                                     client.mChar.msgUpdateDataChar();
                                     // Kiểm tra nếu người chơi là admin
@@ -317,60 +322,60 @@ public class Session{
                             case -87:
 
                             case -3:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 short indexS = -1;
                                 try {
                                     indexS = msg.readShort();
-                                } catch (Exception e){
+                                } catch (Exception e) {
 
                                 }
-                                if(indexS != -1) ItemHandle.useItem(client.mChar, indexS);
+                                if (indexS != -1) ItemHandle.useItem(client.mChar, indexS);
                                 break;
                             case -33:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 InputClient.Handler(msg, client);
                                 break;
                             case 5:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 NPC_Action.NPCMenu(client, msg.readByte());
                                 break;
                             case 7:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Session.this.serivce.xoaTab(client.mChar);
                             case 38:
                             case 40:
 //                                msg.readUTF();
                                 break;
                             case 39:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
 
                                 String nickmoi = msg.readUTF();
                                 Char charmoi = PlayerManager.getInstance().getChar(nickmoi);
-                                if(charmoi == null) {
+                                if (charmoi == null) {
                                     Session.this.serivce.ShowMessWhite("Người chơi đã offline.");
                                     break;
                                 } else {
                                     GroupTemplate gr = Group.gI().getGroup(charmoi.infoChar.groupId);
-                                    if(gr != null){
+                                    if (gr != null) {
 
-                                        if(gr.getKey().infoChar.groupLock){
+                                        if (gr.getKey().infoChar.groupLock) {
                                             charmoi.client.session.serivce.xinGroup(client.mChar.infoChar.name);
                                             Session.this.serivce.ShowMessWhite("Đã gửi yêu cầu gia nhập nhóm");
                                             return;
                                         }
-                                        if(gr.getChar(client.mChar.id) != null || client.mChar.infoChar.groupId != -1){
+                                        if (gr.getChar(client.mChar.id) != null || client.mChar.infoChar.groupId != -1) {
                                             Session.this.serivce.ShowMessWhite("Bạn đã ở trong nhóm");
                                             return;
                                         }
-                                        if(gr.ListMember.size() >= 10){
+                                        if (gr.ListMember.size() >= 10) {
                                             Session.this.serivce.ShowMessWhite("Nhóm đã đầy");
                                             return;
                                         }
                                         gr.addMember(client.mChar);
-                                        Session.this.serivce.ShowMessWhite("Bạn đã gia tham gia nhóm của: "+charmoi.infoChar.name);
+                                        Session.this.serivce.ShowMessWhite("Bạn đã gia tham gia nhóm của: " + charmoi.infoChar.name);
 
                                         Group.gI().LoadMemberALL(gr.id);
-                                        client.mChar.chatGroup("đã tham gia nhóm từ lời mời của "+charmoi.infoChar.name);
+                                        client.mChar.chatGroup("đã tham gia nhóm từ lời mời của " + charmoi.infoChar.name);
 
                                     } else {
                                         Session.this.serivce.ShowMessWhite("Nhóm đã bị giải tán");
@@ -378,41 +383,41 @@ public class Session{
                                 }
                                 break;
                             case 41:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 try {
                                     String name = msg.readUTF();
 
                                     Char doiphuong = client.mChar.zone.findCharInMap(name);
 
-                                    if(doiphuong == null) break;
+                                    if (doiphuong == null) break;
 
-                                    if(client.mChar.infoChar.groupId != -1){ // đã có nhóm
+                                    if (client.mChar.infoChar.groupId != -1) { // đã có nhóm
 
-                                        if (doiphuong.infoChar.groupId != -1){
+                                        if (doiphuong.infoChar.groupId != -1) {
                                             Session.this.serivce.ShowMessWhite("Đối phương đã có nhóm");
                                             return;
                                         }
 
                                         GroupTemplate gr = Group.gI().getGroup(client.mChar.infoChar.groupId);
-                                        if(gr != null){
-                                            if(gr.getChar(doiphuong.id) != null){
+                                        if (gr != null) {
+                                            if (gr.getChar(doiphuong.id) != null) {
                                                 Session.this.serivce.ShowMessWhite("Đối phương đã ở trong nhóm");
                                                 return;
                                             }
                                             doiphuong.client.session.serivce.moiGroup(client.mChar.infoChar.name);
-                                            Session.this.serivce.ShowMessWhite("Đã gửi lời mời tổ đội tới "+doiphuong.infoChar.name);
+                                            Session.this.serivce.ShowMessWhite("Đã gửi lời mời tổ đội tới " + doiphuong.infoChar.name);
                                         }
                                     } else {
 
-                                        if(doiphuong.infoChar.groupId != -1){ // đã có nhóm
+                                        if (doiphuong.infoChar.groupId != -1) { // đã có nhóm
                                             doiphuong.client.session.serivce.xinGroup(client.mChar.infoChar.name);
-                                            Session.this.serivce.ShowMessWhite("Đã yêu cầu tham gia tổ đội tới "+doiphuong.infoChar.name);
+                                            Session.this.serivce.ShowMessWhite("Đã yêu cầu tham gia tổ đội tới " + doiphuong.infoChar.name);
                                         } else {
                                             Group.gI().newGroup(client);
                                             GroupTemplate gr = Group.gI().getGroup(client.mChar.infoChar.groupId);
-                                            if(gr != null){
+                                            if (gr != null) {
                                                 doiphuong.client.session.serivce.moiGroup(client.mChar.infoChar.name);
-                                                Session.this.serivce.ShowMessWhite("Đã gửi lời mời tổ đội tới "+doiphuong.infoChar.name);
+                                                Session.this.serivce.ShowMessWhite("Đã gửi lời mời tổ đội tới " + doiphuong.infoChar.name);
                                             }
                                         }
                                     }
@@ -421,57 +426,57 @@ public class Session{
                                 }
                                 break;
                             case -24:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.cheTao(msg.readByte());
                                 break;
                             case 42:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Group.gI().lockGroup(client);
                                 break;
                             case 43:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Session.this.serivce.MeGroup();
                                 break;
                             case 44:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.roiGroup();
                                 break;
                             case 45:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Session.this.serivce.searchGroup(client);
                                 break;
                             case 46: // nhường trưởng nhóm
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String read_newkey = msg.readUTF();
                                 Char newkey = PlayerManager.getInstance().getChar(read_newkey);
                                 GroupTemplate gr = Group.gI().getGroup(client.mChar.infoChar.groupId);
-                                if(gr != null && gr.getKey().id == client.mChar.id && gr.getChar(newkey.id) != null){
-                                    if(gr.chuyenKey(client.mChar, newkey)){
+                                if (gr != null && gr.getKey().id == client.mChar.id && gr.getChar(newkey.id) != null) {
+                                    if (gr.chuyenKey(client.mChar, newkey)) {
                                         Group.gI().LoadMemberALL(client.mChar.infoChar.groupId);
-                                        client.mChar.chatGroup("đã chuyển trưởng nhóm cho: "+read_newkey);
+                                        client.mChar.chatGroup("đã chuyển trưởng nhóm cho: " + read_newkey);
                                     }
                                 }
                                 break;
                             case 47: // đuổi khỏi nhóm
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String read_memduoi = msg.readUTF();
                                 Char memduoi = PlayerManager.getInstance().getChar(read_memduoi);
                                 GroupTemplate megroup = Group.gI().getGroup(client.mChar.infoChar.groupId);
 
-                                if(megroup != null && megroup.getKey().id == client.mChar.id && megroup.getChar(memduoi.id) != null){
-                                    if(megroup.duoiMem(memduoi)){
+                                if (megroup != null && megroup.getKey().id == client.mChar.id && megroup.getChar(memduoi.id) != null) {
+                                    if (megroup.duoiMem(memduoi)) {
                                         Group.gI().LoadMemberALL(client.mChar.infoChar.groupId);
-                                        client.mChar.chatGroup("đã đuổi "+read_memduoi+" ra khỏi nhóm");
+                                        client.mChar.chatGroup("đã đuổi " + read_memduoi + " ra khỏi nhóm");
                                         memduoi.client.session.serivce.ShowMessRed("Bạn bị đuổi ra khỏi nhóm");
                                         memduoi.client.session.serivce.outGroup();
                                     }
                                 }
                                 break;
                             case 20:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int idSkills = msg.readShort();
                                 int idPlayer = msg.readInt();
-                                if(client.mChar.infoChar.lvPk > 20){
+                                if (client.mChar.infoChar.lvPk > 20) {
                                     client.session.serivce.ShowMessGold("Cấp PK của bạn quá cao không thể PK.");
                                     return;
                                 }
@@ -479,7 +484,7 @@ public class Session{
                                 //attack Mob
                                 break;
                             case 61:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int idSkill = msg.readShort();
                                 int idMob = -1;
                                 try {
@@ -495,65 +500,65 @@ public class Session{
                                 //attack Mob
                                 break;
                             case 74:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 try {
                                     KhoBau.gI().NhanThuong(client.mChar, msg.readByte());
-                                } catch (Exception x){
+                                } catch (Exception x) {
                                     KhoBau.gI().NhanThuong(client.mChar, (short) 177);
                                 }
                                 break;
                             case 127:
                                 //nextMap
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.zone.map.nextMap(client);
                                 break;
                             case -6:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.zone.openTabZone(client);
                                 break;
                             case -7:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.zone.changeZone(client, msg.readByte());
                             case -15:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 try {
-                                    if(client.mChar.info.idCharPk != -1) break;
+                                    if (client.mChar.info.idCharPk != -1) break;
                                     client.mChar.info.typePK = msg.readByte();
                                     Session.this.serivce.sendTypePK(client.mChar.id, client.mChar.info.typePK);
                                     Session.this.serivce.ShowMessGold("Bạn đã đổi trạng thái cờ.");
-                                } catch (Exception e){
+                                } catch (Exception e) {
 
                                 }
                                 break;
                             case -18:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.removeEnemy(msg.readUTF());
                                 break;
                             case -19:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.RaoBan(msg.readLong());
                                 break;
                             case 59:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.zone.pickUpItem(client, msg.readShort());
                                 break;
                             case 76:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.removeFr(msg.readUTF());
                                 break;
                             case 79:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String n = msg.readUTF();
                                 Char c = PlayerManager.getInstance().getChar(n);
-                                if(c == null){
+                                if (c == null) {
                                     Session.this.serivce.ShowMessRed("Người chơi đã offline");
                                 } else {
-                                    if(n.equals(client.mChar.infoChar.name)) break;
+                                    if (n.equals(client.mChar.infoChar.name)) break;
                                     client.mChar.addFriend(c);
                                 }
                                 break;
                             case -35:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte typeTB = msg.readByte();
                                 short indexTB = msg.readShort();
                                 byte slItemBag = msg.readByte();
@@ -573,7 +578,7 @@ public class Session{
                                 UpgradeTrangBi.gI().handle(client.mChar, typeTB, indexTB, itemBag);
                                 break;
                             case 106:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte typeNC = msg.readByte();
                                 typeTB = msg.readByte();
                                 indexTB = msg.readShort();
@@ -591,17 +596,17 @@ public class Session{
                                         }
                                     }
                                 }
-                                UpgradeTrangBi.gI().NangCapBuaNo(client.mChar,typeNC, typeTB, indexTB, itemBag);
+                                UpgradeTrangBi.gI().NangCapBuaNo(client.mChar, typeNC, typeTB, indexTB, itemBag);
                                 break;
                             case -56:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int num = msg.readShort();
                                 if (num != Utlis.getArrayListNotNull(client.mChar.arrItemBag, null).size()) {
                                     client.mChar.msgSendArrItemBag();
                                 }
                                 break;
                             case -50: // ghép cải trang
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte sizeCT = msg.readByte();
                                 List<Item> listCT = new ArrayList<>();
                                 for (int i = 0; i < sizeCT; i++) {
@@ -609,30 +614,30 @@ public class Session{
                                     int index = msg.readShort();
                                     if (type == 0 && index >= 0 && index < client.mChar.arrItemBag.length) {
                                         Item item = client.mChar.getItemBagByIndex(index);
-                                        if(item != null && item.getItemTemplate().type == 14){
+                                        if (item != null && item.getItemTemplate().type == 14) {
                                             item.TYPE_TEMP = type;
                                             listCT.add(item);
                                         }
                                     } else if (type == 2 && index >= 0 && index < client.mChar.arrItemBody.length) {
                                         Item item = client.mChar.getItemBodyByIndex(index);
-                                        if(item != null && item.getItemTemplate().type == 14){
+                                        if (item != null && item.getItemTemplate().type == 14) {
                                             item.TYPE_TEMP = type;
                                             listCT.add(item);
                                         }
                                     } else if (type == 3 && index >= 0 && index < client.mChar.arrItemBody2.length) {
                                         Item item = client.mChar.getItemBody2ByIndex(index);
-                                        if(item != null && item.getItemTemplate().type == 14){
+                                        if (item != null && item.getItemTemplate().type == 14) {
                                             item.TYPE_TEMP = type;
                                             listCT.add(item);
                                         }
                                     }
                                 }
-                                if(listCT.size() <= client.mChar.infoChar.maxGhepCaiTrang) {
+                                if (listCT.size() <= client.mChar.infoChar.maxGhepCaiTrang) {
                                     client.mChar.ghepCaiTrang(listCT);
                                 }
                                 break;
                             case -46: //khảm ngọc
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte typeTrangBi = msg.readByte();
                                 short indexTrangBi = msg.readShort();
 
@@ -643,48 +648,48 @@ public class Session{
                                     if (index >= 0 && index < client.mChar.arrItemBag.length) {
                                         daKham[i] = client.mChar.getItemBagByIndex(index);
                                         if (daKham[i] != null) {
-                                            if (!daKham[i].isNgocKham() || i > 0 && daKham[i-1].id != daKham[i].id) {
+                                            if (!daKham[i].isNgocKham() || i > 0 && daKham[i - 1].id != daKham[i].id) {
                                                 daKham[i] = null;
                                             }
                                         }
                                     }
                                 }
 
-                                if(daKham.length > 0) client.mChar.khamNgoc(typeTrangBi, indexTrangBi, daKham);
+                                if (daKham.length > 0) client.mChar.khamNgoc(typeTrangBi, indexTrangBi, daKham);
                                 break;
                             case -47: // gỡ khảm
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 typeTrangBi = msg.readByte();
                                 indexTrangBi = msg.readShort();
                                 short typeDa = msg.readShort();
                                 client.mChar.goKhamNgoc(typeTrangBi, indexTrangBi, typeDa);
                                 break;
                             case -51: // confirm tách cải trang
-                                if(client.mChar == null) break;
-                                client.mChar.confirmTachCaiTrang(msg.readByte(),msg.readShort());
+                                if (client.mChar == null) break;
+                                client.mChar.confirmTachCaiTrang(msg.readByte(), msg.readShort());
                                 break;
                             case -52: // tách cải trang
-                                if(client.mChar == null) break;
-                                client.mChar.tachCaiTrang(msg.readByte(),msg.readShort());
+                                if (client.mChar == null) break;
+                                client.mChar.tachCaiTrang(msg.readByte(), msg.readShort());
                                 break;
                             case 117:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.sortItem(msg.readByte());
                                 break;
                             case 119:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.shellItemBag(msg.readShort());
                                 break;
                             case 116:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 ItemHandle.useItem(client.mChar, msg.readShort());
                                 break;
                             case 36:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.useItemBodyDuPhong(msg.readShort());
                                 break;
                             case 37:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.itemBodyDuPhongToBag(msg.readByte());
                                 break;
                             case -38:
@@ -695,44 +700,44 @@ public class Session{
                                 }
                                 break;
                             case 112:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.itemExtendToBag(msg.readByte());
                                 break;
                             case 113:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.itemBodyToBag(msg.readByte());
                                 break;
                             case 118:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.tachItem(msg.readShort(), msg.readShort());
                                 break;
                             case 111:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.vutItem(msg.readShort());
                                 break;
                             case 21:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.chatPublic(msg.readUTF());
                                 break;
                             case 22:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 boolean a = msg.readBoolean();
                                 client.mChar.chatWord(msg.readUTF());
                                 break;
                             case 25:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.chatFamily(msg.readUTF());
                                 break;
                             case 26:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.chatGroup(msg.readUTF());
                                 break;
                             case -95:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.msgDataBag();
                                 break;
                             case 62:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 if (client.mChar.infoChar.idClass == 0) {
                                     client.mChar.msgUpdateDataChar();
                                     client.mChar.msgGetInfo(client);
@@ -770,16 +775,17 @@ public class Session{
                                 }
                                 client.mChar.setUpInfo(true);
                                 client.mChar.msgGetInfo(client);
-                                if(client.mChar.infoChar.idTask == 8 && client.mChar.infoChar.idStep == 10) TaskHandler.gI().PlusTask(client.mChar);
+                                if (client.mChar.infoChar.idTask == 8 && client.mChar.infoChar.idStep == 10)
+                                    TaskHandler.gI().PlusTask(client.mChar);
                                 break;
                             case 63:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String nickGet = msg.readUTF();
-                                if(nickGet.equals(client.mChar.infoChar.name)){
+                                if (nickGet.equals(client.mChar.infoChar.name)) {
                                     client.mChar.msgGetInfo(client);
                                 } else {
                                     Char getchars = PlayerManager.getInstance().getChar(nickGet);
-                                    if(getchars == null){
+                                    if (getchars == null) {
                                         Session.this.serivce.ShowMessGold("Đối phương đã Offline không thể xem chi tiết thông tin");
                                     } else {
                                         getchars.msgGetInfo(client);
@@ -788,15 +794,16 @@ public class Session{
 
                                 break;
                             case 8:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int idEntry = msg.readShort();
                                 Mob modGet = client.mChar.zone.findMobInMap(idEntry);
-                                if(modGet != null){
+                                if (modGet != null) {
                                     Thread.sleep(modGet.getMobTemplate().timeThuHoach);
                                     client.session.serivce.xoaTab(client.mChar);
                                     Item itemMob = Item.getItemWithName(modGet.getMobTemplate().name, "Vật phẩm nhiệm vụ");
-                                    if(modGet.id == 130)  itemMob = Item.getItemWithName(modGet.getMobTemplate().name, "Sử dụng sẽ làm đầu óc choáng váng, tinh thần bất định. Vật phẩm chỉ có tác dụng trong ải gia tộc.");
-                                    if(itemMob != null){
+                                    if (modGet.id == 130)
+                                        itemMob = Item.getItemWithName(modGet.getMobTemplate().name, "Sử dụng sẽ làm đầu óc choáng váng, tinh thần bất định. Vật phẩm chỉ có tác dụng trong ải gia tộc.");
+                                    if (itemMob != null) {
                                         itemMob.amount = 1;
                                         client.mChar.addItem(itemMob, "Nhiệm vụ");
                                         client.mChar.msgAddItemBag(itemMob);
@@ -805,11 +812,11 @@ public class Session{
                                 }
                                 break;
                             case 9:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 TaskHandler.gI().huyNhiemVu(client.mChar);
                                 break;
                             case 10:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int slvp = 0;
                                 try {
                                     slvp = msg.readByte();
@@ -817,7 +824,7 @@ public class Session{
 
                                 }
 
-                                if(slvp > 0){
+                                if (slvp > 0) {
                                     Item[] vatPham = new Item[slvp];
                                     for (int i = 0; i < slvp; i++) {
                                         int index = msg.readShort();
@@ -831,33 +838,33 @@ public class Session{
                                 }
                                 break;
                             case 11:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 TaskHandler.gI().nhanNhiemVu(client.mChar);
                                 break;
                             case 12:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 TaskHandler.gI().noiChuyenXong(client.mChar);
                                 break;
                             case 14:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.nangCapSkill(msg.readShort());
                                 break;
                             case 126:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.focusSkill(msg.readShort());
                                 break;
                             case 48:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.veMapMacDinh();
                                 client.mChar.reSpawn();
                                 break;
                             case 49:
-                                if(client.mChar == null) break;
-                                if(client.mChar.infoChar.vangKhoa > 0) {
+                                if (client.mChar == null) break;
+                                if (client.mChar.infoChar.vangKhoa > 0) {
                                     client.mChar.reSpawn();
                                     client.mChar.mineVangKhoa(1, true, true, "Hồi sinh");
                                 } else {
-                                    if(client.mChar.infoChar.vang > 0) {
+                                    if (client.mChar.infoChar.vang > 0) {
                                         client.mChar.reSpawn();
                                         client.mChar.mineVang(1, true, true, "Hồi sinh");
                                     } else {
@@ -866,11 +873,11 @@ public class Session{
                                 }
                                 break;
                             case 54:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.zone.openNpc(client, msg.readShort());
                                 break;
                             case 53:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int indexNpc = msg.readShort();
                                 int index1 = msg.readByte();
                                 int index2 = -1;
@@ -883,7 +890,7 @@ public class Session{
                                 client.mChar.zone.selectNpc(client, indexNpc, index1, index2);
                                 break;
                             case 108:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 boolean bac = msg.readBoolean();
                                 int size = msg.readByte();
                                 Item[] da = new Item[size];
@@ -901,13 +908,13 @@ public class Session{
                                 client.mChar.ghepDa(bac, da);
                                 break;
                             case 105:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int type_item = msg.readByte();
                                 int index_item = msg.readShort();
                                 client.mChar.tachCuongHoa(type_item, index_item);
                                 break;
                             case 107:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 type_item = msg.readByte();
                                 index_item = msg.readShort();
                                 int index_bua = msg.readShort();
@@ -927,7 +934,7 @@ public class Session{
                                 client.mChar.cuongHoa(type_item, index_item, index_bua, da);
                                 break;
                             case 104: // dịch chuyển
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 short typeItem1 = msg.readByte();
                                 short indexItem1 = msg.readShort();
                                 short typeItem2 = msg.readByte();
@@ -937,7 +944,7 @@ public class Session{
                                 client.mChar.dichChuyen(typeItem1, indexItem1, typeItem2, indexItem2, indexItem3);
                                 break;
                             case -20:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int slitem = msg.readByte();
                                 int sltinhthach = 0;
 
@@ -949,17 +956,19 @@ public class Session{
 
                                     if (type == 0 && index >= 0 && index < client.mChar.arrItemBag.length) {
                                         itemdoi = client.mChar.getItemBagByIndex(index);
-                                        if(!client.mChar.removeItemBag(itemdoi, true, "Đổi tinh thạch")) continue;
+                                        if (!client.mChar.removeItemBag(itemdoi, true, "Đổi tinh thạch")) continue;
                                     } else if (type == 2 && index >= 0 && index < client.mChar.arrItemBody.length) {
                                         itemdoi = client.mChar.getItemBodyByIndex(index);
-                                        if(!client.mChar.removeItemBodyByIndex(itemdoi.index, "Đổi tinh thạch")) continue;
+                                        if (!client.mChar.removeItemBodyByIndex(itemdoi.index, "Đổi tinh thạch"))
+                                            continue;
                                         client.mChar.setUpInfo(true);
                                     } else if (type == 3 && index >= 0 && index < client.mChar.arrItemBody2.length) {
-                                        itemdoi= client.mChar.getItemBody2ByIndex(index);
-                                        if(!client.mChar.removeItemBody2ByIndex(itemdoi.index, "Đổi tinh thạch")) continue;
+                                        itemdoi = client.mChar.getItemBody2ByIndex(index);
+                                        if (!client.mChar.removeItemBody2ByIndex(itemdoi.index, "Đổi tinh thạch"))
+                                            continue;
                                         client.mChar.setUpInfo(true);
                                     }
-                                    if(itemdoi == null) continue;
+                                    if (itemdoi == null) continue;
                                     sltinhthach += itemdoi.getTinhThach();
 
                                     if (itemdoi.W() || itemdoi.X()) {
@@ -981,7 +990,7 @@ public class Session{
 
                                 }
 
-                                if(sltinhthach > 0){
+                                if (sltinhthach > 0) {
                                     Item itemAdd = new Item(160, true, sltinhthach);
                                     client.mChar.addItem(itemAdd, "Đổi tinh thạch");
                                     client.mChar.msgAddItemBag(itemAdd);
@@ -989,36 +998,36 @@ public class Session{
                                 }
                                 break;
                             case -22:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
 
                                 int tabBangXepHang = msg.readByte();  // 0 là level, 1 là cao thủ
 
-                                UTPKoolVN.Debug("BXH - "+tabBangXepHang);
+                                UTPKoolVN.Debug("BXH - " + tabBangXepHang);
                                 int classNhanVat = msg.readByte();
-                                if(tabBangXepHang == 0 ){
+                                if (tabBangXepHang == 0) {
                                     ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListCaoThu(classNhanVat);
-                                    if(list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
-                                } else if(tabBangXepHang == 9){
+                                    if (list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
+                                } else if (tabBangXepHang == 9) {
                                     ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListNapNhieu(classNhanVat);
-                                    if(list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
-                                } else if(tabBangXepHang == 1){
-                                ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListCuaCai(classNhanVat);
-                                if(list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
-                                } else if(tabBangXepHang == 2){
+                                    if (list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
+                                } else if (tabBangXepHang == 1) {
+                                    ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListCuaCai(classNhanVat);
+                                    if (list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
+                                } else if (tabBangXepHang == 2) {
                                     ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListTaiPhu(classNhanVat);
-                                    if(list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
-                                } else if(tabBangXepHang == 4){
+                                    if (list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
+                                } else if (tabBangXepHang == 4) {
                                     ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListGiaToc();
-                                    if(list != null) client.session.serivce.bangXepHangGiaToc(list);
-                                }  else if(tabBangXepHang == 8){
+                                    if (list != null) client.session.serivce.bangXepHangGiaToc(list);
+                                } else if (tabBangXepHang == 8) {
                                     ArrayList<Bxh_Tpl> list = BangXepHang.gI().getListCuongHoa(classNhanVat);
-                                    if(list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
-                                }else {
+                                    if (list != null) client.session.serivce.bangXepHang(list, (short) tabBangXepHang);
+                                } else {
                                     client.session.serivce.bangXepHangOFF();
                                 }
                                 break;
                             case -25:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int indexItem = msg.readShort();
                                 index1 = msg.readByte();
                                 index2 = -1;
@@ -1031,221 +1040,222 @@ public class Session{
                                 ItemHandle.useItemWithTab(client.mChar, indexItem, index1, index2);
                                 break;
                             case 121:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int idbuy = msg.readShort();
                                 int slbuy = msg.readShort();
                                 client.mChar.BuyShop(idbuy, slbuy);
                                 break;
                             case 122:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int index_1 = msg.readByte();
                                 byte index_2 = -1; // id hệ
                                 try {
-                                    index_2 = (byte) (msg.readByte()-1);
+                                    index_2 = (byte) (msg.readByte() - 1);
                                 } catch (Exception xx) {
 
                                 }
-                                if(index_1 == 54){ // gia tộc
-                                    if(client.mChar.infoChar.idTask == 14 && client.mChar.infoChar.idStep == 0){
+                                if (index_1 == 54) { // gia tộc
+                                    if (client.mChar.infoChar.idTask == 14 && client.mChar.infoChar.idStep == 0) {
                                         TaskHandler.gI().PlusTask(client.mChar);
                                     }
-                                    if(client.mChar.infoChar.familyId == -1){
+                                    if (client.mChar.infoChar.familyId == -1) {
                                         client.session.serivce.listGiaToc(client, "");
                                     } else {
                                         client.session.serivce.sendGiaToc(client.mChar);
                                     }
                                     break;
                                 }
-                                if(index_1 == 50){ // rương
-                                   client.mChar.SendBox();
+                                if (index_1 == 50) { // rương
+                                    client.mChar.SendBox();
                                     break;
                                 }
-                                if(index_1 == 56){ // hoạt động
+                                if (index_1 == 56) { // hoạt động
                                     client.session.serivce.openTabHoatDong();
                                     break;
                                 }
-                                if(index_1 == 72){ // nhiệm vụ
+                                if (index_1 == 72) { // nhiệm vụ
                                     client.session.serivce.openTabNhiemVu();
                                     break;
                                 }
-                                if(index_1 == 81){ // ghép đá
+                                if (index_1 == 81) { // ghép đá
                                     client.session.serivce.openTabGhepDa();
                                     break;
                                 }
 
-                                if(index_1 == 82){ // ghép đá
+                                if (index_1 == 82) { // ghép đá
                                     client.session.serivce.openTabCuongHoa();
                                     break;
                                 }
-                                if(index_1 == 83){ // ghép đá
+                                if (index_1 == 83) { // ghép đá
                                     client.session.serivce.openTabBuaNo();
                                     break;
                                 }
-                                if(index_1 == 84){ // ghép đá
+                                if (index_1 == 84) { // ghép đá
                                     client.session.serivce.openTabTachCuongHoa();
                                     break;
                                 }
-                                if(index_1 == 85){ // ghép đá
+                                if (index_1 == 85) { // ghép đá
                                     client.session.serivce.openTabDichChuyen();
                                     break;
                                 }
-                                if(index_1 == 89){ // nạp vàng
+                                if (index_1 == 89) { // nạp vàng
                                     client.session.serivce.openTabNapTien();
                                     break;
                                 }
-                                if(index_1 == 87){ // ghép đá
+                                if (index_1 == 87) { // ghép đá
                                     client.session.serivce.openTabKhamNgoc((byte) client.mChar.infoChar.levelKhamNgoc);
                                     break;
                                 }
-                                if(index_1 == 90){ // ghép đá
+                                if (index_1 == 90) { // ghép đá
                                     client.session.serivce.openTabTachNgocKham();
                                     break;
                                 }
-                                if(index_1 == 94){ // ghép đá
+                                if (index_1 == 94) { // ghép đá
                                     client.session.serivce.openTabGhepCaiTrang(client.mChar);
                                     break;
                                 }
-                                if(index_1 == 95){ // ghép đá
+                                if (index_1 == 95) { // ghép đá
                                     client.session.serivce.openTabTachCaiTrang();
                                     break;
                                 }
 
-                                if(index_1 == 58){ // hoạt động
+                                if (index_1 == 58) { // hoạt động
 
                                     break;
                                 }
 
-                                if(index_1 == 86){ // kho báu
+                                if (index_1 == 86) { // kho báu
 
                                     KhoBau.gI().Star(client.mChar);
                                     break;
                                 }
-                                if(index_1 == 88){ // phúc lợi
+                                if (index_1 == 88) { // phúc lợi
                                     client.session.serivce.openPhucLoi(client.mChar);
                                     break;
                                 }
-                                if(index_1 == 92 && index_2 == -1){ // nhiệm vụ
+                                if (index_1 == 92 && index_2 == -1) { // nhiệm vụ
                                     TaskHandler.gI().checkDoneSeting(client.mChar);
                                     break;
                                 }
-                                if(index_2 != -1){
+                                if (index_2 != -1) {
                                     client.session.serivce.SendShop(index_1, index_2);
                                 } else {
                                     client.session.serivce.SendShop(index_1);
                                 }
-                                UTPKoolVN.Debug("INDEX1:"+index_1+" INDEX2:"+index_2);
+                                UTPKoolVN.Debug("INDEX1:" + index_1 + " INDEX2:" + index_2);
                                 break;
                             case 13: // view mob
-                                if(client.mChar.zone == null) break;
+                                if (client.mChar.zone == null) break;
                                 short idmob = msg.readShort();
                                 Mob mobFind = client.mChar.zone.findMobInMap(idmob);
-                                if(mobFind == null) break;
+                                if (mobFind == null) break;
                                 Session.this.serivce.viewMob(mobFind);
                                 break;
                             case 19: // cừu sát
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String str = msg.readUTF();
-                                if(str.equals(client.mChar.infoChar.name)) break;
+                                if (str.equals(client.mChar.infoChar.name)) break;
                                 client.mChar.cuuSat(str);
                                 break;
                             case 31: // chấp nhận tỷ võ
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 str = msg.readUTF();
-                                if(str.equals(client.mChar.infoChar.name)) break;
+                                if (str.equals(client.mChar.infoChar.name)) break;
                                 client.mChar.chapNhanTyVo(str);
                                 break;
                             case 32: // tỷ võ
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 str = msg.readUTF();
-                                if(str.equals(client.mChar.infoChar.name)) break;
+                                if (str.equals(client.mChar.infoChar.name)) break;
                                 Char getPlayer = client.mChar.zone.findCharInMap(str);
-                                if(getPlayer == null) break;
-                                if(getPlayer.info.typePK == 1 && getPlayer.info.idCharPk != -1 || client.mChar.info.typePK == 1 && client.mChar.info.idCharPk != -1) break;
-                                getPlayer.client.session.serivce.sendMoiTyVo(""+client.mChar.infoChar.name);
-                                client.session.serivce.ShowMessWhite("Đã gửi lời mời tỷ võ tới "+str);
+                                if (getPlayer == null) break;
+                                if (getPlayer.info.typePK == 1 && getPlayer.info.idCharPk != -1 || client.mChar.info.typePK == 1 && client.mChar.info.idCharPk != -1)
+                                    break;
+                                getPlayer.client.session.serivce.sendMoiTyVo("" + client.mChar.infoChar.name);
+                                client.session.serivce.ShowMessWhite("Đã gửi lời mời tỷ võ tới " + str);
                                 break;
                             case 34: // xem thông tin
-                                if(client.mChar == null) break;
-                                if(client.mChar.info.viewChar > System.currentTimeMillis()){
+                                if (client.mChar == null) break;
+                                if (client.mChar.info.viewChar > System.currentTimeMillis()) {
                                     Session.this.serivce.ShowMessRed("Tháo tác quá nhanh thử lại sau: " +
                                             String.format("%.1f", (client.mChar.info.viewChar - System.currentTimeMillis()) / 1000.0) + " giây");
                                     break;
                                 }
                                 String nameChar = msg.readUTF();
-                                if(nameChar.equals(client.mChar.infoChar.name)){
+                                if (nameChar.equals(client.mChar.infoChar.name)) {
                                     client.session.serivce.ShowMessRed("Không thể tự xem thông tin của mình");
                                     break;
                                 }
                                 Char getchars = PlayerManager.getInstance().getChar(nameChar);
-                                if(getchars != null){
+                                if (getchars != null) {
                                     Session.this.serivce.viewChar(getchars);
-                                    getchars.client.session.serivce.ShowMessGold(""+client.mChar.infoChar.name+" đang xem thông tin của bạn.");
-                                    client.mChar.info.viewChar = System.currentTimeMillis()+1000;
-                                    client.session.serivce.ShowMessWhite(""+nameChar+" đang Online");
+                                    getchars.client.session.serivce.ShowMessGold("" + client.mChar.infoChar.name + " đang xem thông tin của bạn.");
+                                    client.mChar.info.viewChar = System.currentTimeMillis() + 1000;
+                                    client.session.serivce.ShowMessWhite("" + nameChar + " đang Online");
                                 } else {
                                     Writer getData = CharDB.writerOffline(nameChar);
-                                    if(getData != null){
+                                    if (getData != null) {
                                         Session.this.serivce.viewCharOffline(getData);
-                                        client.session.serivce.ShowMessRed(""+nameChar+" đã Offline");
+                                        client.session.serivce.ShowMessRed("" + nameChar + " đã Offline");
                                     } else {
-                                        client.session.serivce.ShowMessRed(""+nameChar+" đã Offline không thể xem thông tin");
+                                        client.session.serivce.ShowMessRed("" + nameChar + " đã Offline không thể xem thông tin");
                                     }
-                                    client.mChar.info.viewChar = System.currentTimeMillis()+4000;
+                                    client.mChar.info.viewChar = System.currentTimeMillis() + 4000;
                                 }
                                 break;
                             case 35: // set item dự phòng
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte type = msg.readByte();
                                 client.mChar.setItemDuPhong(type);
                                 break;
                             case 72: //kho báu
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte sl = msg.readByte();
                                 KhoBau.gI().Quay(client.mChar, sl);
                                 break;
                             case 114: // box to bag
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.boxToBag(msg.readShort());
                                 break;
                             case 115: // bag to box
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.bagToBox(msg.readShort());
                                 break;
                             case 28: // inbox riêng
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String text = msg.readUTF();
                                 try {
                                     String[] parts = text.split(": "); // Chia chuỗi dựa trên ": "
                                     String tennick = parts[0].substring(1);
                                     String noidung = parts[1];
                                     Char getchar = PlayerManager.getInstance().getChar(tennick);
-                                    if(getchar == null){
+                                    if (getchar == null) {
                                         Session.this.serivce.ShowMessRed("Người chơi  đã offline.");
-                                    } else if(tennick.equals(client.mChar.infoChar.name)) {
+                                    } else if (tennick.equals(client.mChar.infoChar.name)) {
                                         Session.this.serivce.ShowMessRed("Không thể tự gửi cho mình");
                                     } else {
                                         getchar.client.session.serivce.NhanTinRieng(client.mChar.infoChar.name, noidung);
                                     }
-                                } catch (Exception ex){
+                                } catch (Exception ex) {
                                     Session.this.serivce.ShowMessRed("Nội dung không họp lệ vui lòng thử lại.");
                                 }
                                 break;
                             case 87: // gửi hộp thư
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String nguoinhan = msg.readUTF();
                                 String chude = msg.readUTF();
                                 String noidung = msg.readUTF();
                                 int bacdinhkem = msg.readInt();
                                 short item = msg.readShort();
-                                if(chude.length() == 0 || nguoinhan.length() == 0 || noidung.length() == 0){
+                                if (chude.length() == 0 || nguoinhan.length() == 0 || noidung.length() == 0) {
                                     Session.this.serivce.ShowMessRed("Chủ đề, người nhận, nội dung không được bỏ trống");
-                                } else if(client.mChar.infoChar.bac < 10) {
+                                } else if (client.mChar.infoChar.bac < 10) {
                                     Session.this.serivce.ShowMessRed("Không đủ bạc");
-                                } else if(nguoinhan.equals(client.mChar.infoChar.name)) {
+                                } else if (nguoinhan.equals(client.mChar.infoChar.name)) {
                                     Session.this.serivce.ShowMessRed("Không thể tự gửi cho mình");
-                                } else{
+                                } else {
                                     Char getchar = PlayerManager.getInstance().getChar(nguoinhan);
-                                    if(getchar == null){
+                                    if (getchar == null) {
                                         Session.this.serivce.ShowMessRed("Người nhận không tồn tại hoặc đã Offline");
                                     } else {
                                         client.mChar.guiThu(chude, getchar, noidung, bacdinhkem, item);
@@ -1253,21 +1263,21 @@ public class Session{
                                 }
                                 break;
                             case 95: // nhận thư
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 short idthunhan = msg.readShort();
                                 client.mChar.nhanItemThu(idthunhan);
                                 break;
                             case 96:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 short idthu = msg.readShort();
                                 client.mChar.updateDocThu(idthu);
                                 break;
                             case 81: // hoàn thành giao dịch
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.DoneGiaoDich();
                                 break;
                             case 82: // Khóa giao dịch
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int bacgd = msg.readInt(); // bạc
                                 int sizeitem = msg.readByte(); // size index
 
@@ -1286,59 +1296,59 @@ public class Session{
                                 client.mChar.KhoaGiaoDich(bacgd, itembag);
                                 break;
                             case 83: // hủy giao dịch
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.HuyGiaoDich();
                                 break;
                             case 85: // chấp nhận giao dịch
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.ChapNhanGiaoDich();
                                 break;
                             case 86:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.MoiGiaoDich(msg.readUTF());
                                 break;
                             case 88:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 short sizexoa = msg.readShort();
-                                for (int i = 0; i < sizexoa; i++){
+                                for (int i = 0; i < sizexoa; i++) {
                                     short idxoa = msg.readShort();
                                     client.mChar.removeThu(idxoa);
                                 }
                                 client.session.serivce.updateThu();
                                 break;
                             case 98: // Mua
-                                if(client.mChar == null) break;
-                                if(Maintenance.isRuning){
+                                if (client.mChar == null) break;
+                                if (Maintenance.isRuning) {
                                     Session.this.serivce.ShowMessRed("Không thể thực hiện do: Máy chủ sắp bảo trì.");
                                     break;
                                 }
                                 client.mChar.BuyCho(msg.readLong());
                                 break;
                             case 99: // đăng bán
-                                if(client.mChar == null) break;
-                                if(Maintenance.isRuning){
+                                if (client.mChar == null) break;
+                                if (Maintenance.isRuning) {
                                     Session.this.serivce.ShowMessRed("Không thể thực hiện do: Máy chủ sắp bảo trì.");
                                     break;
                                 }
                                 client.mChar.DangBanCho(msg.readShort(), msg.readByte(), msg.readInt());
                                 break;
                             case 100: // treo chợ me
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.session.serivce.sendDataCho_Me(client);
                                 break;
                             case 101: // send chợ
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Item items = new Item(0, false);
-                                client.session.serivce.sendDataCho(msg.readByte(),msg.readByte(),msg.readShort());
+                                client.session.serivce.sendDataCho(msg.readByte(), msg.readByte(), msg.readShort());
                                 break;
                             default:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 UTPKoolVN.Debug("recv: " + msg.cmd);
                                 Session.this.serivce.ShowMessRed("Chức năng sắp đuợc cập nhật.");
                                 break;
                         }
                     } catch (Exception ex) {
-                        Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                        Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
                     } finally {
                         try {
                             msg.close();
@@ -1347,6 +1357,7 @@ public class Session{
 
                     }
                 }
+
                 @JsonIgnore
                 private void readTypeClient(Message msg) {
                     try {
@@ -1368,12 +1379,14 @@ public class Session{
 
                     }
                 }
+
                 @JsonIgnore
                 private void readMessage123(Message msg) {
                     try {
                         msg.cmd = msg.readByte();
-                        UTPKoolVN.Debug("readMessage123 MSG: "+msg.cmd);
+                        UTPKoolVN.Debug("readMessage123 MSG: " + msg.cmd);
                         switch (msg.cmd) {
+                            // Lấy danh sách nhân vật của tài khoản
                             case -127:
                                 String username = msg.readUTF();
                                 String password = msg.readUTF();
@@ -1385,12 +1398,11 @@ public class Session{
                                     Player p2 = PlayerManager.getInstance().getPlayerLogin(p.id);
                                     if (p2 != null) {
                                         Session.this.serivce.NhacNhoMessage("Bạn đang đăng nhập tại máy khác. Hãy thử đăng nhập lại");
-                                        if(PlayerManager.getInstance().isCheckSession(p2.client.session)){
+                                        if (PlayerManager.getInstance().isCheckSession(p2.client.session)) {
                                             PlayerManager.getInstance().kickSession(p2.client.session);
                                         } else {
                                             PlayerManager.getInstance().remove(p2);
                                         }
-
                                     } else {
                                         if (!client.isSendArrData) {
                                             client.isSendArrData = true;
@@ -1405,8 +1417,9 @@ public class Session{
                             case -128:
                                 int selectChar = msg.readByte();
                                 String name = msg.readUTF();
+
                                 // new game
-                                if(client.player.CharacterID > 0){
+                                if (client.player.CharacterID > 0) {
                                     Session.this.serivce.ShowMessRed("Để tránh clone mỗi nick chỉ được phép tạo 1 nhân vật");
                                     break;
                                 } else if (!Pattern.matches("^[a-zA-Z0-9]{4,15}$", name)) {
@@ -1446,7 +1459,7 @@ public class Session{
                                     client.mChar.setXY(150, 257);
                                     client.mChar.id = CharDB.InsertCharacter(client.mChar);
 
-                                    if(client.mChar.id == -1){
+                                    if (client.mChar.id == -1) {
                                         Session.this.serivce.ShowMessRed("Có lỗi sảy ra vui lòng thử lại sau.");
                                         client.mChar = null;
                                         break;
@@ -1472,7 +1485,7 @@ public class Session{
                                 }
                                 break;
                             case -17:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte typeTB = msg.readByte();
                                 short indexTB = msg.readShort();
                                 byte slItemBag = msg.readByte();
@@ -1492,17 +1505,17 @@ public class Session{
                                 UpgradeTrangBi.gI().upgradeLucDao(client.mChar, typeTB, indexTB, itemBag);
                                 break;
                             case -20:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.goiPhanThan();
                                 break;
                             case -21:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 int var2 = 100 + (client.mChar.infoChar.MaxLevelPhanThan - 10) * 50;
-                                if(client.mChar.infoChar.vang <  var2){
+                                if (client.mChar.infoChar.vang < var2) {
                                     Session.this.serivce.ShowMessGold("Không đủ vàng");
                                     break;
                                 }
-                                if(client.mChar.infoChar.MaxLevelPhanThan >= 30){
+                                if (client.mChar.infoChar.MaxLevelPhanThan >= 30) {
                                     Session.this.serivce.ShowMessGold("Đã đạt giới hạn tối đa");
                                     break;
                                 }
@@ -1511,9 +1524,9 @@ public class Session{
                                 client.mChar.msgDataBag();
                                 break;
                             case -44:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 String inputCaptcha = msg.readUTF();
-                                if(inputCaptcha.equals(client.mChar.info.captcha)){
+                                if (inputCaptcha.equals(client.mChar.info.captcha)) {
                                     client.session.serivce.ShowMessGold("Giải bùa uể thổ thành công");
                                     client.session.serivce.closeTab();
                                     client.mChar.info.captcha = "";
@@ -1522,83 +1535,83 @@ public class Session{
                                 }
                                 break;
                             case -48:
-                                UpgradeTrangBi.gI().DoiBuaNo(client.mChar,msg.readByte(), msg.readShort());
+                                UpgradeTrangBi.gI().DoiBuaNo(client.mChar, msg.readByte(), msg.readShort());
                                 break;
                             case -68:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().KhaiMoSkill(client.mChar, msg.readByte());
                                 break;
                             case -106:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().TaoGiaToc(client.mChar, msg.readUTF());
                                 break;
                             case -91:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().camChat(client.mChar, msg.readUTF());
                                 break;
                             case -92:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().XinVaoGiaToc(client.mChar, msg.readUTF());
                                 break;
                             case -94:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().rutQuy(client.mChar, msg.readInt());
                                 break;
                             case -98:
-                                if(client.mChar == null) break;
-                                Family.gI().phatLuong(client.mChar,msg.readUTF(), msg.readInt());
+                                if (client.mChar == null) break;
+                                Family.gI().phatLuong(client.mChar, msg.readUTF(), msg.readInt());
                                 break;
                             case -95:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().gopQuy(client.mChar, msg.readInt());
                                 break;
                             case -96:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().roiRaToc(client.mChar);
                                 break;
                             case -97:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().kickMember(client.mChar, msg.readUTF());
                                 break;
                             case -99:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().setRole(client.mChar, msg.readUTF(), msg.readByte());
                                 break;
                             case -100:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().dongYVaoToc(client.mChar, msg.readUTF());
                                 break;
                             case -101:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().duyetMember(client.mChar, msg.readUTF());
                                 break;
                             case -104:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().XinVaoGiaTocNameChar(client.mChar, msg.readUTF());
                                 break;
                             case -105:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().MoiVaoGiaToc(client.mChar, msg.readUTF());
                                 break;
                             case -93:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Family.gI().setThongBao(client.mChar, msg.readUTF());
                                 break;
                             case -34: // chát mic
 //                                Session.this.serivce.test();
                                 break;
                             case -85:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.thuVanMay();
                                 break;
                             case -73:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Session.this.serivce.sendInfo();
                                 break;
                             case -63:
-                                if(client.mChar == null) break;
-                                if(client.mChar.phucLoi.isGoiHaoHoa) break;
-                                if(client.mChar.infoChar.vang > 200){
+                                if (client.mChar == null) break;
+                                if (client.mChar.phucLoi.isGoiHaoHoa) break;
+                                if (client.mChar.infoChar.vang > 200) {
                                     client.mChar.mineVang(200, true, true, "Mua gói hào hoa");
                                     client.mChar.phucLoi.isGoiHaoHoa = true;
                                     DataCenter.gI().phucLoiInfo.TongDauTu++;
@@ -1609,9 +1622,9 @@ public class Session{
                                 }
                                 break;
                             case -62:
-                                if(client.mChar == null) break;
-                                if(client.mChar.phucLoi.isGoiChiTon) break;
-                                if(client.mChar.infoChar.vang > 300){
+                                if (client.mChar == null) break;
+                                if (client.mChar.phucLoi.isGoiChiTon) break;
+                                if (client.mChar.infoChar.vang > 300) {
                                     client.mChar.mineVang(300, true, true, "Mua gói chí tôn");
                                     client.mChar.phucLoi.isGoiChiTon = true;
                                     DataCenter.gI().phucLoiInfo.TongDauTu++;
@@ -1622,9 +1635,9 @@ public class Session{
                                 }
                                 break;
                             case -65:
-                                if(client.mChar == null) break;
-                                if(client.mChar.phucLoi.timeTheVinhVinhVien >= 0) break;
-                                if(client.mChar.infoChar.vang > 300){
+                                if (client.mChar == null) break;
+                                if (client.mChar.phucLoi.timeTheVinhVinhVien >= 0) break;
+                                if (client.mChar.infoChar.vang > 300) {
                                     client.mChar.mineVang(300, true, true, "Mua gói thẻ vĩnh viễn");
                                     client.mChar.addVangKhoa(300, true, true, "Mua gói thẻ tháng");
                                     client.mChar.phucLoi.timeTheVinhVinhVien = 0L;
@@ -1636,40 +1649,40 @@ public class Session{
                                 }
                                 break;
                             case -60:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
 
                                 int slquay = DataCenter.gI().getVongQuayNap(client.mChar.phucLoi.diemTichLuyVongQuay, client.mChar.phucLoi.solanQuay);
 
-                                if(slquay > 0){
+                                if (slquay > 0) {
                                     int vang = DataCenter.gI().getDiem(client.mChar.phucLoi.diemTichLuyVongQuay);
 
                                     int tilequay;
                                     int rand = Utlis.nextInt(100);
 
-                                    if(rand < 3){
+                                    if (rand < 3) {
                                         tilequay = 5;
-                                    } else if(rand < 8){
+                                    } else if (rand < 8) {
                                         tilequay = 4;
-                                    } else if(rand < 15){
+                                    } else if (rand < 15) {
                                         tilequay = 3;
-                                    } else if(rand < 25){
+                                    } else if (rand < 25) {
                                         tilequay = 2;
-                                    } else if(rand < 40){
+                                    } else if (rand < 40) {
                                         tilequay = 1;
                                     } else {
                                         tilequay = 0;
                                     }
 
 
-                                    if(tilequay == 1){
+                                    if (tilequay == 1) {
                                         vang *= 1.2;
-                                    }  else if(tilequay == 2){
+                                    } else if (tilequay == 2) {
                                         vang *= 1.3;
-                                    } else if(tilequay == 3){
+                                    } else if (tilequay == 3) {
                                         vang *= 1.4;
-                                    } else if(tilequay == 4){
+                                    } else if (tilequay == 4) {
                                         vang *= 1.5;
-                                    }  else if(tilequay == 5){
+                                    } else if (tilequay == 5) {
                                         vang *= 1.8;
                                     } else {
                                         vang *= 1.1;
@@ -1677,7 +1690,7 @@ public class Session{
                                     Session.this.serivce.sendVongQuayNap((byte) client.mChar.phucLoi.solanQuay, (byte) tilequay, (int) vang);
                                     client.mChar.addVangKhoa(vang, false, false, "Vòng quay nạp");
                                     client.mChar.phucLoi.solanQuay++;
-                                    if(client.mChar.phucLoi.solanQuay > 5) {
+                                    if (client.mChar.phucLoi.solanQuay > 5) {
                                         client.mChar.phucLoi.solanQuay = 0;
                                         client.mChar.phucLoi.diemTichLuyVongQuay = 0;
                                     }
@@ -1686,12 +1699,12 @@ public class Session{
                                 }
                                 break;
                             case -66:
-                                if(client.mChar == null) break;
-                                if(client.mChar.phucLoi.timeTheThang > System.currentTimeMillis()) break;
-                                if(client.mChar.infoChar.vang > 100){
+                                if (client.mChar == null) break;
+                                if (client.mChar.phucLoi.timeTheThang > System.currentTimeMillis()) break;
+                                if (client.mChar.infoChar.vang > 100) {
                                     client.mChar.mineVang(100, true, true, "Mua gói thẻ tháng");
                                     client.mChar.addVangKhoa(100, true, true, "Mua gói thẻ tháng");
-                                    client.mChar.phucLoi.timeTheThang = System.currentTimeMillis()+2592000000L;
+                                    client.mChar.phucLoi.timeTheThang = System.currentTimeMillis() + 2592000000L;
                                     DataCenter.gI().phucLoiInfo.TongSoLanMuaTheThang++;
                                     DataCenter.gI().updatePhucLoi(3, DataCenter.gI().phucLoiInfo.TongSoLanMuaTheThang);
                                     Session.this.serivce.sendPhucLoi(client.mChar);
@@ -1700,13 +1713,13 @@ public class Session{
                                 }
                                 break;
                             case -70:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.nhanPhucLoi(msg.readShort());
                                 break;
                             case -74:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte selectDanhHieu = msg.readByte();
-                                if(client.mChar.listDanhHieu.size() > 0){
+                                if (client.mChar.listDanhHieu.size() > 0) {
                                     client.mChar.infoChar.selectDanhHieu = selectDanhHieu;
                                     Session.this.serivce.sendDanhHieu(client.mChar);
                                 }
@@ -1715,14 +1728,14 @@ public class Session{
                                 serivce.ClosetoMainLogin();
                                 break;
                             case -52: // dịch chuyển nhanh tới người chơi
-                                if(client.mChar == null) break;
-                                if(client.mChar.getItemBagById(569) == null){
+                                if (client.mChar == null) break;
+                                if (client.mChar.getItemBagById(569) == null) {
                                     Session.this.serivce.ShowMessWhite("Cần có đồng hành phù để dịch chuyển");
                                     break;
                                 }
                                 String string = msg.readUTF();
                                 Char chardichchuyen = PlayerManager.getInstance().getChar(string);
-                                if(chardichchuyen == null){
+                                if (chardichchuyen == null) {
                                     Session.this.serivce.ShowMessWhite("Người chơi đã offline");
                                 } else {
                                     int idMap = chardichchuyen.infoChar.mapId;
@@ -1734,69 +1747,71 @@ public class Session{
                                 }
                                 break;
                             case -45:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.rutTien(msg.readByte(), msg.readInt());
                                 break;
                             case -46:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.catTien(msg.readByte(), msg.readInt());
                                 break;
                             case -58:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.selectCaiTrang(msg.readByte());
                                 break;
                             case -82:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.addLengthBox();
                                 break;
                             case -110: //giftcode
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 Giftcode.useCode(msg.readUTF(), client);
                                 break;
                             case -50: //nhận all thư
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.nhanAllItemThu();
                                 break;
                             case -18:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 UseOtherFunctions.moRongViThu(client.mChar, msg);
                                 break;
                             case -26:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 UseOtherFunctions.xoaViThu(client.mChar, msg);
                                 break;
                             case -28:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 UseOtherFunctions.nangCapViThu(client.mChar, msg);
                                 break;
                             case -19:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 byte type = msg.readByte();
                                 client.mChar.addEff_ItemBody(type);
                                 break;
                             case -69:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 client.mChar.moRongKhamNgoc();
                                 break;
                             default:
-                                if(client.mChar == null) break;
+                                if (client.mChar == null) break;
                                 UTPKoolVN.Debug("recv(123): " + msg.cmd);
                                 Session.this.serivce.ShowMessRed("Chức năng sắp đuợc cập nhật.");
                                 break;
                         }
                     } catch (Exception ex) {
-                        Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                        Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
                     }
                 }
             };
             serivce = new Serivce();
         } catch (Exception ex) {
-            Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+            Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             clean();
         }
     }
+
     @JsonIgnore
     public boolean isStart;
+
     @JsonIgnore
     public void start() {
         if (!isStart) {
@@ -1805,10 +1820,12 @@ public class Session{
             threadRecv.start();
         }
     }
+
     @JsonIgnore
     public synchronized void sendMessage(Message message) {
         vecMessage.add(message);
     }
+
     @JsonIgnore
     private boolean CMD_MOVE(byte cmd) {
         return cmd == 123 || cmd == 124 || cmd == 125 || cmd == -82 || cmd == -83 || cmd == -84;
@@ -1819,6 +1836,7 @@ public class Session{
     public boolean isConnected() {
         return !isClean && socket != null && socket.isConnected();
     }
+
     @JsonIgnore
     public void clean() {
         if (isClean) {
@@ -1831,7 +1849,7 @@ public class Session{
             try {
                 reader.close();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
 
             reader = null;
@@ -1841,7 +1859,7 @@ public class Session{
 
                 writer.close();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
 
             writer = null;
@@ -1850,7 +1868,7 @@ public class Session{
             try {
                 threadSend.interrupt();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
 
             }
             threadSend = null;
@@ -1859,7 +1877,7 @@ public class Session{
             try {
                 threadRecv.interrupt();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
 
             }
             threadRecv = null;
@@ -1868,7 +1886,7 @@ public class Session{
             try {
                 vecMessage.clear();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
 
@@ -1876,7 +1894,7 @@ public class Session{
             try {
                 socket.close();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
 
             socket = null;
@@ -1885,11 +1903,12 @@ public class Session{
             try {
                 client.clean();
             } catch (Exception ex) {
-                Utlis.logError(Session.class, ex , "Da say ra loi:\n" + ex.getMessage());
+                Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
 
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     public class Serivce {
 
@@ -1902,6 +1921,7 @@ public class Session{
             }
 
         }
+
         public void SendText(String text) {
             try {
                 Message msg = new Message((byte) -8);
@@ -1923,7 +1943,7 @@ public class Session{
 //            }
 //        }
 
-        public void OpenMenu(int npcmenu,int typemenu, String text, String menu) {
+        public void OpenMenu(int npcmenu, int typemenu, String text, String menu) {
             try {
                 Message msg = new Message((byte) 5);
                 msg.writeUTF(text);
@@ -1935,6 +1955,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void SendTextMenu(String text) {
             try {
                 Message msg = new Message((byte) 5);
@@ -1945,16 +1966,17 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void SendShop(int idshop) {
             try {
-                if((idshop == 8 || idshop == 20 || idshop == 19) && client.mChar.infoChar.idClass == 0){
+                if ((idshop == 8 || idshop == 20 || idshop == 19) && client.mChar.infoChar.idClass == 0) {
                     Session.this.serivce.SendText("Ta không bán đồ cho người vô gia cư.");
                     return;
                 }
                 Message msg = new Message((byte) 122);
                 List<ItemShop> shop = DataCenter.gI().shopTemplates.get(idshop);
-                if(shop == null) return;
-                if(DataCache.IdShop2.contains(idshop)) SendShop(idshop, (byte) 0);
+                if (shop == null) return;
+                if (DataCache.IdShop2.contains(idshop)) SendShop(idshop, (byte) 0);
 
                 List<ItemShop> filteredShop = new ArrayList<>();
                 for (ItemShop item : shop) {
@@ -1983,21 +2005,22 @@ public class Session{
             }
 
         }
+
         public void SendShop(int idshop, byte he) {
             try {
 
                 Message msg = new Message((byte) 122);
                 List<ItemShop> shop = DataCenter.gI().shopTemplates.get(idshop);
-                if(shop == null) return;
+                if (shop == null) return;
                 List<ItemShop> filteredShop = new ArrayList<>();
                 for (ItemShop item : shop) {
-                    if ((item.idhe == he+1) && (item.idclass == 0 || item.idclass == client.mChar.infoChar.idClass) && (item.sex == -1 || item.sex == client.mChar.infoChar.gioiTinh)) {
+                    if ((item.idhe == he + 1) && (item.idclass == 0 || item.idclass == client.mChar.infoChar.idClass) && (item.sex == -1 || item.sex == client.mChar.infoChar.gioiTinh)) {
                         filteredShop.add(item);
                     }
                 }
 
                 msg.writeByte(idshop); // id loại shop
-                msg.writeByte(he+1); // hệ
+                msg.writeByte(he + 1); // hệ
                 msg.writeShort(filteredShop.size()); // sl item
 
                 for (ItemShop item : filteredShop) {
@@ -2044,6 +2067,7 @@ public class Session{
             }
 
         }
+
         public void openTabTinhThach() {
             try {
 
@@ -2055,6 +2079,7 @@ public class Session{
             }
 
         }
+
         public void openTabHoatDong() {
             try {
 
@@ -2062,7 +2087,7 @@ public class Session{
                 msg.writeByte(56);
                 msg.writeUTF("Làng Lá Plus\\n Chúc bạn chơi game vui vẻ.!");
                 msg.writeByte(18);
-                for (int i = 0; i < DataCache.camNang.length; i++){
+                for (int i = 0; i < DataCache.camNang.length; i++) {
                     msg.writeUTF(DataCache.camNang[i]);
                 }
                 Session.this.sendMessage(msg);
@@ -2078,7 +2103,7 @@ public class Session{
                 Message msg = new Message((byte) 122);
                 msg.writeByte(74);
                 msg.writeShort(DataCenter.gI().DataLucky.size());
-                for (int i = 0; i < DataCenter.gI().DataLucky.size(); i++){
+                for (int i = 0; i < DataCenter.gI().DataLucky.size(); i++) {
                     LuckyTpl luckyTpl = DataCenter.gI().DataLucky.get(i);
                     Item itemLuck = new Item(luckyTpl.idItem, true, luckyTpl.amount);
                     itemLuck.expiry = luckyTpl.expiry;
@@ -2091,6 +2116,7 @@ public class Session{
             }
 
         }
+
         public void openTabBuaNo() {
             try {
 
@@ -2102,6 +2128,7 @@ public class Session{
             }
 
         }
+
         public void openTabNhiemVu() {
             try {
 
@@ -2113,6 +2140,7 @@ public class Session{
             }
 
         }
+
         public void openTabDichChuyen() {
             try {
 
@@ -2124,6 +2152,7 @@ public class Session{
             }
 
         }
+
         public void openTabNapTien() {
             try {
 
@@ -2150,6 +2179,7 @@ public class Session{
             }
 
         }
+
         public void openTabLuyenBiKip() {
             try {
 
@@ -2173,6 +2203,7 @@ public class Session{
             }
 
         }
+
         public void openTabKhamNgoc(byte sl) {
             try {
 
@@ -2185,6 +2216,7 @@ public class Session{
             }
 
         }
+
         public void openTabTachNgocKham() {
             try {
 
@@ -2196,9 +2228,10 @@ public class Session{
             }
 
         }
+
         public void openTabGhepCaiTrang(Char c) {
             try {
-                if(c.infoChar.maxGhepCaiTrang > 17) sendMaxGhepCaiTrang(c);
+                if (c.infoChar.maxGhepCaiTrang > 17) sendMaxGhepCaiTrang(c);
                 Message msg = new Message((byte) 122);
                 msg.writeByte(94);
                 Session.this.sendMessage(msg);
@@ -2218,6 +2251,7 @@ public class Session{
             }
 
         }
+
         public void openTabTachCaiTrang() {
             try {
 
@@ -2241,6 +2275,7 @@ public class Session{
             }
 
         }
+
         public void SendKhoBau() {
             try {
 
@@ -2269,6 +2304,7 @@ public class Session{
             }
 
         }
+
         public void openDoiBiKip() {
             try {
 
@@ -2283,6 +2319,7 @@ public class Session{
             }
 
         }
+
         public void sendQuayKhoBau(byte sao, byte itemchay, byte idloaithuong, boolean ruong) {
             try {
 
@@ -2297,6 +2334,7 @@ public class Session{
             }
 
         }
+
         public void ResetKhoBau() {
             try {
 
@@ -2307,6 +2345,7 @@ public class Session{
             }
 
         }
+
         public void sendGiaToc(Char c) {
             try {
 
@@ -2315,7 +2354,7 @@ public class Session{
 
                 FamilyTemplate giaToc = Family.gI().getGiaToc(c);
 
-                if(giaToc == null) return;
+                if (giaToc == null) return;
                 msg.writeUTF(giaToc.name); // tên gia tộc
                 msg.writeUTF("");
                 msg.writeLong(giaToc.info.timeCreateLog);
@@ -2355,12 +2394,12 @@ public class Session{
                 }
 
                 msg.writeShort(giaToc.litsItem.size());
-                for (int i = 0; i < giaToc.litsItem.size(); i++){
+                for (int i = 0; i < giaToc.litsItem.size(); i++) {
                     Item get = giaToc.litsItem.get(i);
                     get.write(msg.writer);
                 }
                 msg.writeByte(giaToc.listSkill.size());
-                for (int i = 0; i < giaToc.listSkill.size(); i++){
+                for (int i = 0; i < giaToc.listSkill.size(); i++) {
                     SkillClan sk = giaToc.listSkill.get(i);
                     msg.writeByte(sk.id);
                 }
@@ -2372,22 +2411,23 @@ public class Session{
             }
 
         }
-        public void listGiaToc(Client client,  String name) {
+
+        public void listGiaToc(Client client, String name) {
             try {
 
                 Message msg = new Message((byte) 122);
 
                 msg.writeByte(91);
 
-                if(name.length() > 0){
+                if (name.length() > 0) {
                     Vector<FamilyTemplate> listFamilySearch = new Vector<>();
-                    for (int i = 0; i < Family.gI().listFamily.size(); i++){
+                    for (int i = 0; i < Family.gI().listFamily.size(); i++) {
                         FamilyTemplate f = Family.gI().listFamily.get(i);
-                        if(f.name.contains(name)){
+                        if (f.name.contains(name)) {
                             listFamilySearch.add(f);
                         }
                     }
-                    if(listFamilySearch.size() == 0){
+                    if (listFamilySearch.size() == 0) {
                         client.session.serivce.ShowMessGold("Không tìm thấy gia tộc này");
                         return;
                     }
@@ -2405,9 +2445,9 @@ public class Session{
 
                 } else {
                     Vector<FamilyTemplate> listFamilySearch = new Vector<>();
-                    for (int i = 0; i < Family.gI().listFamily.size(); i++){
+                    for (int i = 0; i < Family.gI().listFamily.size(); i++) {
                         FamilyTemplate f = Family.gI().listFamily.get(i);
-                        if(PlayerManager.getInstance().getChar(f.info.nameKey) != null){
+                        if (PlayerManager.getInstance().getChar(f.info.nameKey) != null) {
                             listFamilySearch.add(f);
                         }
                     }
@@ -2430,6 +2470,7 @@ public class Session{
             }
 
         }
+
         public void listGiaTocTest() {
             try {
 
@@ -2452,6 +2493,7 @@ public class Session{
             }
 
         }
+
         public void bangXepHang(ArrayList<Bxh_Tpl> list, short tab) {
             try {
 
@@ -2460,34 +2502,34 @@ public class Session{
                 msg.writeBoolean(true);
                 msg.writeByte(list.size());
 
-                for (int i = 0; i < list.size(); i++){
+                for (int i = 0; i < list.size(); i++) {
                     msg.writeByte(i);
-                    if(tab == 4){
+                    if (tab == 4) {
                         msg.writeUTF(list.get(i).GiaTocInfo.nameKey);
                     } else {
                         msg.writeUTF(list.get(i).infoChar.name);
                     }
 
-                    if(tab == 0) {
+                    if (tab == 0) {
                         msg.writeShort(list.get(i).infoChar.level);
                         msg.writeLong(list.get(i).infoChar.exp);
-                    } else if(tab == 1) {
+                    } else if (tab == 1) {
                         msg.writeShort(list.get(i).infoChar.level);
                         msg.writeLong(list.get(i).infoChar.cuaCai);
-                    } else if(tab == 2) {
+                    } else if (tab == 2) {
                         msg.writeShort(list.get(i).infoChar.level);
                         msg.writeLong(list.get(i).infoChar.taiPhu);
-                    } else if(tab == 4) {
+                    } else if (tab == 4) {
                         msg.writeShort(list.get(i).GiaTocInfo.level);
                         msg.writeLong(list.get(i).CountMem);
-                    } else if(tab == 8){
+                    } else if (tab == 8) {
                         msg.writeShort(list.get(i).infoChar.level);
                         msg.writeLong(list.get(i).infoChar.tongCuongHoa);
-                    } else if(tab == 9){
+                    } else if (tab == 9) {
                         msg.writeShort(list.get(i).infoChar.level);
                         msg.writeLong(list.get(i).infoChar.tongVangNap);
                     }
-                    if(tab == 4) {
+                    if (tab == 4) {
                         msg.writeByte(list.get(i).GiaTocInfo.maxMember);
                         msg.writeUTF(list.get(i).NameGiaToc);// gia tộc
                     } else {
@@ -2513,7 +2555,7 @@ public class Session{
                 msg.writeBoolean(true);
                 msg.writeByte(list.size());
 
-                for (int i = 0; i < list.size(); i++){
+                for (int i = 0; i < list.size(); i++) {
                     msg.writeUTF(list.get(i).GiaTocInfo.nameKey);
                     msg.writeInt(list.get(i).GiaTocInfo.level);
 
@@ -2548,6 +2590,7 @@ public class Session{
             }
 
         }
+
         public void OpenTabGiaoDich(String nick) {
             try {
                 Message msg = new Message((byte) 122);
@@ -2559,6 +2602,7 @@ public class Session{
             }
 
         }
+
         public void NhacNhoMessage(String text) {
             try {
                 Message msg = new Message((byte) -110);
@@ -2581,6 +2625,7 @@ public class Session{
             }
 
         }
+
         public void sendMoiTyVo(String text) {
             try {
                 Message msg = new Message((byte) 32);
@@ -2604,18 +2649,20 @@ public class Session{
             }
 
         }
+
         public void endTyVo(Char c, int id, int idPlayer, byte type) {
             try {
                 Message msg = new Message((byte) 29);
                 msg.writeByte(type);
                 msg.writeInt(id);
                 msg.writeInt(idPlayer);
-               c.zone.SendZoneMessage(msg);
+                c.zone.SendZoneMessage(msg);
             } catch (Exception ex) {
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
 
         }
+
         public void startCuuSat(int id, int idPlayer) {
             try {
                 Message msg = new Message((byte) 19);
@@ -2627,6 +2674,7 @@ public class Session{
             }
 
         }
+
         public void huyCuuSat(int id, boolean isThongbao) {
             try {
                 Message msg = new Message((byte) 18);
@@ -2638,6 +2686,7 @@ public class Session{
             }
 
         }
+
         public void ShowMessRed(String text) {
             try {
                 Message msg = new Message((byte) -105);
@@ -2648,6 +2697,7 @@ public class Session{
             }
 
         }
+
         public void msgUpdateGuiThu(int bac, int backhoa, short index) {
             try {
                 Message msg = new Message((byte) 87);
@@ -2659,6 +2709,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void updateThu() {
             try {
                 Writer writer = new Writer();
@@ -2670,6 +2721,7 @@ public class Session{
             }
 
         }
+
         public void ShowMessGold(String text) {
             try {
                 Message msg = new Message((byte) -106);
@@ -2680,6 +2732,7 @@ public class Session{
             }
 
         }
+
         public void sendBuaUeTho(String nameChar, Char _myChar) {
             try {
                 Message msg = Message.c((byte) -44);
@@ -2695,6 +2748,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendArrDataGame2() {
             try {
                 Message msg = Message.d((byte) -113);
@@ -2705,6 +2759,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void closeTab() {
             try {
                 Message msg = Message.c((byte) -43);
@@ -2724,6 +2779,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void xinVaoGiaToc(Char c) {
             try {
                 Message msg = Message.c((byte) -104);
@@ -2758,6 +2814,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendArrMap(int mapID) {
             try {
                 Message msg = Message.f((byte) 3);
@@ -2797,6 +2854,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         private void sendInfo() {
             try {
                 Message msg = Message.c((byte) -73);
@@ -2806,16 +2864,17 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendInfoGiaTocAllChar(Char c) {
             try {
                 Message msg = new Message((byte) -88);
                 msg.writeInt(c.id);
                 msg.writeUTF(c.infoChar.familyName);
-                if(c.infoChar.familyName.length() > 0){
+                if (c.infoChar.familyName.length() > 0) {
                     FamilyTemplate giatoc = Family.gI().getGiaToc(c);
-                    if(giatoc != null){
+                    if (giatoc != null) {
                         Family_Member member = Family.gI().getMe(c, giatoc);
-                        if(member != null){
+                        if (member != null) {
                             msg.writeUTF(c.infoChar.familyName);
                             msg.writeByte(member.role);
                         }
@@ -2832,11 +2891,11 @@ public class Session{
                 Message msg = new Message((byte) -88);
                 msg.writeInt(c.id);
                 msg.writeUTF(c.infoChar.familyName);
-                if(c.infoChar.familyName.length() > 0){
+                if (c.infoChar.familyName.length() > 0) {
                     FamilyTemplate giatoc = Family.gI().getGiaToc(c);
-                    if(giatoc != null){
+                    if (giatoc != null) {
                         Family_Member member = Family.gI().getMe(c, giatoc);
-                        if(member != null){
+                        if (member != null) {
                             msg.writeUTF("");
                             msg.writeByte(member.role);
                         }
@@ -2847,6 +2906,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendTypePK(int id, byte type) {
             try {
                 Message msg = new Message((byte) -15);
@@ -2869,6 +2929,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void removeItemBox(short index) {
             try {
                 // type = 0 (bag),1 (item box) 2 (body), 3(body2), 4 (arrItemExtend)
@@ -2880,6 +2941,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void removeItemBody(short index) {
             try {
                 // type = 0 (bag),1 (item box) 2 (body), 3(body2), 4 (arrItemExtend)
@@ -2891,6 +2953,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void removeItemBody2(short index) {
             try {
                 // type = 0 (bag),1 (item box) 2 (body), 3(body2), 4 (arrItemExtend)
@@ -2902,6 +2965,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void removeItemExtend(short index) {
             try {
                 // type = 0 (bag),1 (item box) 2 (body), 3(body2), 4 (arrItemExtend)
@@ -2913,6 +2977,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         private void sendTabSelectChar() {
             try {
                 Message msg = Message.d((byte) -128);
@@ -2960,6 +3025,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void setXYAllZone(Client client) {
             try {
                 Message msg = new Message((byte) 102);
@@ -2968,9 +3034,10 @@ public class Session{
                 msg.writeShort(client.mChar.cy);
                 client.mChar.zone.SendZoneMessage(msg);
             } catch (Exception ex) {
-                Utlis.logError(Map.class, ex , "Da say ra loi updateXYChar:\n" + ex.getMessage());
+                Utlis.logError(Map.class, ex, "Da say ra loi updateXYChar:\n" + ex.getMessage());
             }
         }
+
         public void sendMobReSpawn(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 57, writer));
@@ -2978,6 +3045,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void addMod(Mob mob) {
             try {
                 Message msg = new Message((byte) 1);
@@ -3000,6 +3068,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendAttackMob(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 61, writer));
@@ -3007,6 +3076,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendAttackPlayer(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 20, writer));
@@ -3014,6 +3084,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void setXYChar() {
             try {
                 Message msg = new Message((byte) 102);
@@ -3338,6 +3409,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void openTabGiaoVatPham() {
             try {
                 Message msg = new Message((byte) 122);
@@ -3347,6 +3419,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void openTabCuongHoa() {
             try {
                 Message msg = new Message((byte) 122);
@@ -3356,6 +3429,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void SendBox(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 122, writer));
@@ -3363,6 +3437,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendStrTask(byte id) {
             try {
                 Message msg = new Message((byte) 12);
@@ -3372,6 +3447,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void ghepDa(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 108, writer));
@@ -3387,6 +3463,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void dichChuyen(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 104, writer));
@@ -3394,6 +3471,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void updateStatusChar(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 33, writer));
@@ -3409,6 +3487,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendDanhHieu(Char chars) {
             try {
                 Writer writer = new Writer();
@@ -3420,6 +3499,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void updateTimeSkill(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) -85, writer));
@@ -3427,6 +3507,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void viewChar(Char mchar) {
             try {
                 Writer writer = new Writer();
@@ -3446,6 +3527,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void viewCharOffline(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 34, writer));
@@ -3473,6 +3555,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void updateSkillViThu(Writer writer) {
             try {
                 Message msg = Message.c((byte) -29);
@@ -3482,6 +3565,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void addMobToZone(Char character, Mob mob) {
             try {
                 Message msg = new Message((byte) 1);
@@ -3495,12 +3579,13 @@ public class Session{
         public void updateTimeChatColor(Client client) {
             try {
                 Message msg = Message.c((byte) -35);
-               msg.writeInt(client.mChar.infoChar.timeChatColor);
+                msg.writeInt(client.mChar.infoChar.timeChatColor);
                 Session.this.sendMessage(msg);
             } catch (Exception ex) {
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void tachCuongHoa(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 105, writer));
@@ -3508,6 +3593,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void tachCaiTrang(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) -52, writer));
@@ -3523,6 +3609,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void doneKhamNgoc(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) -46, writer));
@@ -3546,6 +3633,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendHoatLuc(Char chars) {
             try {
                 Message msg = new Message((byte) -23);
@@ -3555,6 +3643,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void ghepCaiTrang(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) -50, writer));
@@ -3562,6 +3651,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void updateBac(Writer writer) {
             try {
                 Session.this.sendMessage(new Message((byte) 90, writer));
@@ -3606,6 +3696,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void NhanTinRieng(String tennick, String noidung) {
             try {
                 Message msg = new Message((byte) 28);
@@ -3617,6 +3708,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void MoiGiaoDich(String nickmoi) {
             try {
                 Message msg = new Message((byte) 86);
@@ -3626,11 +3718,12 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void khoaGiaoDich(int bac, List<Item> Items) {
             try {
                 Message msg = new Message((byte) 82);
                 msg.writeInt(bac);
-                msg.writeByte((byte)Items.size());
+                msg.writeByte((byte) Items.size());
                 for (Item item : Items) {
                     item.write(msg.writer);
                 }
@@ -3644,7 +3737,7 @@ public class Session{
             try {
                 Message msg = new Message((byte) 80);
                 msg.writeInt(bac);
-                msg.writeByte((byte)Items.size());
+                msg.writeByte((byte) Items.size());
                 for (Item item : Items) {
                     item.write(msg.writer);
                 }
@@ -3663,6 +3756,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendDataCho_Me(Client client) {
             try {
 
@@ -3692,6 +3786,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendDataCho(byte timtheo, byte sapxep, short page) {
             try {
                 List<ChoTemplate> DataCho = DataCenter.gI().DataCho;
@@ -3711,8 +3806,8 @@ public class Session{
                 int itemsPerPage = 30;
                 int totalItems = filteredList.size();
                 int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
-                if(page >=  totalPages) page = (short) ((short) totalPages-1);
-                if(page <= Short.MIN_VALUE) page = 0;
+                if (page >= totalPages) page = (short) ((short) totalPages - 1);
+                if (page <= Short.MIN_VALUE) page = 0;
 
                 // 3. Phân trang
                 List<ChoTemplate> pageItems = getPageItems(filteredList, page, itemsPerPage);
@@ -3735,10 +3830,10 @@ public class Session{
         }
 
         private List<ChoTemplate> getPageItems(List<ChoTemplate> list, int page, int itemsPerPage) {
-            int startIndex =  page * itemsPerPage;
+            int startIndex = page * itemsPerPage;
             // Kiểm tra để đảm bảo không vượt quá kích thước danh sách
             if (startIndex > list.size()) {
-                startIndex = list.size()-itemsPerPage;
+                startIndex = list.size() - itemsPerPage;
             }
             if (startIndex < 0) {
                 startIndex = 0;
@@ -3756,7 +3851,7 @@ public class Session{
         private List<ChoTemplate> filterList(List<ChoTemplate> DataCho, byte timtheo) {
             List<ChoTemplate> filteredList = new ArrayList<>();
             for (ChoTemplate cho : DataCho) {
-                if(cho.isBuy != 0) continue;
+                if (cho.isBuy != 0) continue;
                 if (timtheo == 0) { // Tất cả
                     filteredList.add(cho);
                 } else if (timtheo >= 1 && timtheo <= 27) {
@@ -3774,34 +3869,62 @@ public class Session{
 
         private boolean matchesCriteria(ChoTemplate cho, byte criteria) {
             switch (criteria) {
-                case 1: return cho.item.getItemTemplate().type == 21; // tất cả đá
-                case 2: return cho.item.getItemTemplate().id == 0; // Đá cấp 1
-                case 3: return cho.item.getItemTemplate().id == 1; // Đá cấp 2
-                case 4: return cho.item.getItemTemplate().id == 2; // Đá cấp 3
-                case 5: return cho.item.getItemTemplate().id == 3; // Đá cấp 4
-                case 6: return cho.item.getItemTemplate().id == 4; // Đá cấp 5
-                case 7: return cho.item.getItemTemplate().id == 5; // Đá cấp 6
-                case 8: return cho.item.getItemTemplate().id == 6; // Đá cấp 7
-                case 9: return cho.item.getItemTemplate().id == 7; // Đá cấp 8
-                case 10: return cho.item.getItemTemplate().id == 8; // Đá cấp 9
-                case 11: return cho.item.getItemTemplate().id == 9; // Đá cấp 10
-                case 12: return cho.item.getItemTemplate().id == 10; // Đá cấp 11
-                case 13: return cho.item.getItemTemplate().id == 11; // Đá cấp 12
-                case 14: return cho.item.isTypeTrangBi(); // tất cả trang bị
-                case 15: return cho.item.getItemTemplate().type == 1; // vũ khí
-                case 16: return cho.item.getItemTemplate().type == 3; // dây thừng
-                case 17: return cho.item.getItemTemplate().type == 5; // móc sắt
-                case 18: return cho.item.getItemTemplate().type == 7; // Ống tiêu
-                case 19: return cho.item.getItemTemplate().type == 9; // Túi Nhẫn Giả
-                case 20: return cho.item.getItemTemplate().type == 0; // đai
-                case 21: return cho.item.getItemTemplate().type == 2; // Áo
-                case 22: return cho.item.getItemTemplate().type == 4; // Bao tay
-                case 23: return cho.item.getItemTemplate().type == 6; // Quần
-                case 24: return cho.item.getItemTemplate().type == 8; // Giày
-                case 25: return cho.item.getItemTemplate().name.contains("Lệnh bài"); // Lệnh bài
-                case 26: return cho.item.getItemTemplate().name.contains("Vỏ sò"); // vỏ sò
-                case 27: return cho.item.getItemTemplate().type == 32; // ngọc khảm
-                default: return false;
+                case 1:
+                    return cho.item.getItemTemplate().type == 21; // tất cả đá
+                case 2:
+                    return cho.item.getItemTemplate().id == 0; // Đá cấp 1
+                case 3:
+                    return cho.item.getItemTemplate().id == 1; // Đá cấp 2
+                case 4:
+                    return cho.item.getItemTemplate().id == 2; // Đá cấp 3
+                case 5:
+                    return cho.item.getItemTemplate().id == 3; // Đá cấp 4
+                case 6:
+                    return cho.item.getItemTemplate().id == 4; // Đá cấp 5
+                case 7:
+                    return cho.item.getItemTemplate().id == 5; // Đá cấp 6
+                case 8:
+                    return cho.item.getItemTemplate().id == 6; // Đá cấp 7
+                case 9:
+                    return cho.item.getItemTemplate().id == 7; // Đá cấp 8
+                case 10:
+                    return cho.item.getItemTemplate().id == 8; // Đá cấp 9
+                case 11:
+                    return cho.item.getItemTemplate().id == 9; // Đá cấp 10
+                case 12:
+                    return cho.item.getItemTemplate().id == 10; // Đá cấp 11
+                case 13:
+                    return cho.item.getItemTemplate().id == 11; // Đá cấp 12
+                case 14:
+                    return cho.item.isTypeTrangBi(); // tất cả trang bị
+                case 15:
+                    return cho.item.getItemTemplate().type == 1; // vũ khí
+                case 16:
+                    return cho.item.getItemTemplate().type == 3; // dây thừng
+                case 17:
+                    return cho.item.getItemTemplate().type == 5; // móc sắt
+                case 18:
+                    return cho.item.getItemTemplate().type == 7; // Ống tiêu
+                case 19:
+                    return cho.item.getItemTemplate().type == 9; // Túi Nhẫn Giả
+                case 20:
+                    return cho.item.getItemTemplate().type == 0; // đai
+                case 21:
+                    return cho.item.getItemTemplate().type == 2; // Áo
+                case 22:
+                    return cho.item.getItemTemplate().type == 4; // Bao tay
+                case 23:
+                    return cho.item.getItemTemplate().type == 6; // Quần
+                case 24:
+                    return cho.item.getItemTemplate().type == 8; // Giày
+                case 25:
+                    return cho.item.getItemTemplate().name.contains("Lệnh bài"); // Lệnh bài
+                case 26:
+                    return cho.item.getItemTemplate().name.contains("Vỏ sò"); // vỏ sò
+                case 27:
+                    return cho.item.getItemTemplate().type == 32; // ngọc khảm
+                default:
+                    return false;
             }
         }
 
@@ -3854,6 +3977,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void bagToBox(short itembag, short itembox) {
             try {
                 Message msg = new Message((byte) 115);
@@ -3864,6 +3988,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void boxToBag(short itembag, short itembox) {
             try {
                 Message msg = new Message((byte) 114);
@@ -3874,12 +3999,13 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void nullopen() {
         }
 
         public void nhacNhoConfirm(String text, int TypeConfirm) {
             try {
-                if(Session.this.client != null){
+                if (Session.this.client != null) {
                     Session.this.client.TypeConfirm = TypeConfirm;
                 }
                 Message msg = new Message((byte) -109);
@@ -3903,6 +4029,7 @@ public class Session{
             }
 
         }
+
         public void outGroup() {
             try {
                 Message msg = new Message((byte) 44);
@@ -3912,6 +4039,7 @@ public class Session{
             }
 
         }
+
         public void searchGroup(Client client) {
             try {
                 Message msg = new Message((byte) 45);
@@ -3934,7 +4062,7 @@ public class Session{
                 for (int i = 0; i < listgroup.size(); i++) {
                     GroupTemplate g = listgroup.get(i);
                     Char key = g.getKey();
-                    if(key != null){
+                    if (key != null) {
                         msg.writer.writeBoolean(key.infoChar.groupLock); // trạng thái khóa , không khóa
                         msg.writer.writeByte(g.ListMember.size()); // sl tv
                         msg.writer.writeByte(key.infoChar.idClass); // id class
@@ -3951,6 +4079,7 @@ public class Session{
             }
 
         }
+
         public void MeGroup() {
             try {
                 Message msg = new Message((byte) 43);
@@ -3960,14 +4089,14 @@ public class Session{
 
                 GroupTemplate megroup = Group.gI().getGroup(client.mChar.infoChar.groupId);
                 byte slmen = 0;
-                if(megroup != null){
+                if (megroup != null) {
                     slmen = (byte) megroup.ListMember.size();
                 }
 
                 msg.writer.writeByte(slmen); // sl tv
 
                 if (megroup != null) {
-                    for (int i = 0; i < megroup.ListMember.size(); i++){
+                    for (int i = 0; i < megroup.ListMember.size(); i++) {
                         Char member = megroup.ListMember.get(i);
                         msg.writer.writeByte(member.infoChar.idClass); // id class
 
@@ -4008,6 +4137,7 @@ public class Session{
             }
 
         }
+
         public void msgAddFr(String name, byte stt, boolean online) {
             try {
                 Message msg = new Message((byte) 79);
@@ -4044,6 +4174,7 @@ public class Session{
             }
 
         }
+
         public void msgRemoveEn(String name) {
             try {
                 Message msg = new Message((byte) -18);
@@ -4066,6 +4197,7 @@ public class Session{
             }
 
         }
+
         public void msgSendAddFr(String name, byte stt) {
             try {
                 Message msg = new Message((byte) 77);
@@ -4077,6 +4209,7 @@ public class Session{
             }
 
         }
+
         public void loadPhanTram(Char chars, int time, String text) {
             try {
                 Message msg = new Message((byte) 4);
@@ -4091,6 +4224,7 @@ public class Session{
             }
 
         }
+
         public void xoaTab(Char c) {
             try {
                 Message msg = new Message((byte) 7);
@@ -4127,6 +4261,7 @@ public class Session{
             }
 
         }
+
         public void updateSelectCaiTrang(byte type) {
             try {
                 Message msg = Message.c((byte) -58);
@@ -4136,6 +4271,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendVongQuayNap(byte tile, byte test, int vang) {
             try {
                 Message msg = Message.c((byte) -60);
@@ -4147,6 +4283,7 @@ public class Session{
                 Utlis.logError(Session.class, ex, "Da say ra loi:\n" + ex.getMessage());
             }
         }
+
         public void sendTextNewGame() {
             try {
                 Message msg = new Message((byte) -97);

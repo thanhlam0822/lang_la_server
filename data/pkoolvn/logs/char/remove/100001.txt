@@ -78,3 +78,145 @@ REMOVE ITEM BAG Hỗ phách, SL: 100 lý do: Khảm ngọc, TIME: 25/04/2024 08:
 
 REMOVE ITEM BODY by index Cải trang Danzo, SL: 1 lý do: Tháo từ BODY, TIME: 25/04/2024 08:47 SA
 
+REMOVE ITEM BAG by index Kiếm gỗ, SL: 0 lý do: Mặc vào người, TIME: 28/05/2026 08:48 AM
+
+MINE VÀNG KHÓA -30, tổng: 9970 lý do: MUA SHOP, TIME: 28/05/2026 08:50 AM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 50 lý do: Sử dụng, TIME: 28/05/2026 08:50 AM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 49 lý do: Sử dụng, TIME: 28/05/2026 08:51 AM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 48 lý do: Sử dụng, TIME: 28/05/2026 08:51 AM
+
+REMOVE ITEM BAG Cừu con, SL: 11 lý do: Nhiệm vụ, TIME: 28/05/2026 08:52 AM
+
+REMOVE ITEM BAG Danh hiệu Nhẫn Giả, SL: 1 lý do: Sử dụng, TIME: 28/05/2026 15:02 PM
+
+REMOVE ITEM BAG Cây Thược Dược, SL: 10 lý do: Nhiệm vụ, TIME: 28/05/2026 17:55 PM
+
+MINE BẠC KHÓA -200, tổng: 100001172 lý do: MUA SHOP, TIME: 28/05/2026 18:26 PM
+
+REMOVE ITEM BAG Mì xào, SL: 1 lý do: Sử dụng, TIME: 28/05/2026 18:26 PM
+
+MINE VÀNG -24, tổng: 227248 lý do: MUA SHOP, TIME: 28/05/2026 18:27 PM
+
+MINE VÀNG -24, tổng: 227224 lý do: MUA SHOP, TIME: 28/05/2026 18:27 PM
+
+REMOVE ITEM BAG Rắn tím, SL: 4 lý do: Nhiệm vụ, TIME: 28/05/2026 18:27 PM
+
+REMOVE ITEM BAG by index Cải trang Nagato, SL: 0 lý do: Mặc vào người, TIME: 28/05/2026 18:29 PM
+
+REMOVE ITEM BAG Rương cải trang, SL: 100 lý do: Sử dụng, TIME: 28/05/2026 18:29 PM
+
+MINE VÀNG -100, tổng: 454396 lý do: Mua gói thẻ tháng, TIME: 29/05/2026 23:55 PM
+
+MINE VÀNG -190, tổng: 454206 lý do: MUA SHOP, TIME: 29/05/2026 23:56 PM
+
+MINE VÀNG -190, tổng: 454016 lý do: MUA SHOP, TIME: 29/05/2026 23:56 PM
+
+MINE VÀNG -190, tổng: 453826 lý do: MUA SHOP, TIME: 29/05/2026 23:56 PM
+
+MINE VÀNG -14, tổng: 453812 lý do: MUA SHOP, TIME: 29/05/2026 23:56 PM
+
+REMOVE ITEM BAG Túi mở rộng cấp 1, SL: 1 lý do: Sử dụng, TIME: 29/05/2026 23:56 PM
+
+MINE VÀNG -14, tổng: 453798 lý do: MUA SHOP, TIME: 29/05/2026 23:56 PM
+
+MINE VÀNG -14, tổng: 453784 lý do: MUA SHOP, TIME: 29/05/2026 23:56 PM
+
+REMOVE ITEM BAG Túi mở rộng cấp 1, SL: 1 lý do: Sử dụng, TIME: 29/05/2026 23:56 PM
+
+REMOVE ITEM BAG Túi mở rộng cấp 1, SL: 1 lý do: Sử dụng, TIME: 29/05/2026 23:56 PM
+
+REMOVE ITEM BAG by index Vô hạn Di Chuyển phù, SL: 1 lý do: HẾT HẠN SD, TIME: 06/06/2026 11:02 AM
+
+REMOVE ITEM BAG by index Vô hạn Di Chuyển phù, SL: 1 lý do: HẾT HẠN SD, TIME: 06/06/2026 11:08 AM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 1, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 15:51 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 2, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 15:51 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 3, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 15:51 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 4, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 5, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 6, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 7, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 8, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 9, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Gói ưu đãi Rank 10, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Danh hiệu Lục Đạo, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 16:55 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 47 lý do: Sử dụng, TIME: 06/06/2026 22:43 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 46 lý do: Sử dụng, TIME: 06/06/2026 22:43 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 45 lý do: Sử dụng, TIME: 06/06/2026 22:44 PM
+
+MINE VÀNG KHÓA -30, tổng: 10190 lý do: MUA SHOP, TIME: 06/06/2026 22:44 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+MINE BẠC KHÓA -72, tổng: 200602973 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 2, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+MINE BẠC KHÓA -72, tổng: 200602901 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 1, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+MINE BẠC KHÓA -18, tổng: 200602883 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 2, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Đá cấp 2, SL: 1 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+MINE BẠC KHÓA -72, tổng: 200602811 lý do: Ghép đá, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 44 lý do: Sử dụng, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 43 lý do: Sử dụng, TIME: 06/06/2026 22:45 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 42 lý do: Sử dụng, TIME: 06/06/2026 22:46 PM
+
+REMOVE ITEM BAG Cờ cảnh báo, SL: 3 lý do: Sử dụng, TIME: 06/06/2026 22:46 PM
+
+REMOVE ITEM BAG Cờ cảnh báo, SL: 2 lý do: Sử dụng, TIME: 06/06/2026 22:46 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 41 lý do: Sử dụng, TIME: 06/06/2026 22:48 PM
+
+REMOVE ITEM BAG Cờ cảnh báo, SL: 1 lý do: Sử dụng, TIME: 06/06/2026 22:48 PM
+
+REMOVE ITEM BAG Bình HP cấp 1, SL: 40 lý do: Sử dụng, TIME: 06/06/2026 23:19 PM
+

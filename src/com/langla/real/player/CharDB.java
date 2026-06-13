@@ -29,7 +29,7 @@ public class CharDB {
              PreparedStatement pstmt =  con.prepareStatement(query)) {
             pstmt.setInt(1, id);
             ResultSet red = pstmt.executeQuery();
-            if (red != null && red.first()) {
+            if (red != null && red.next()) {
                 Char newchar = new Char(client);
                 ObjectMapper mapper = DataCenter.gI().mapper;
 
@@ -182,7 +182,7 @@ public class CharDB {
              PreparedStatement pstmt = con.prepareStatement(query)) {
             pstmt.setString(1, name);
             ResultSet red = pstmt.executeQuery();
-            return red == null || red.first();
+            return red == null || red.next();
         } catch (SQLException e) {
             Utlis.logError(CharDB.class, e , "Co loi tai:\n" + e.getMessage());
         }
