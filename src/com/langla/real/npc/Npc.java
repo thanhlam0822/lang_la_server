@@ -184,7 +184,7 @@ public class Npc extends Entity implements Cloneable {
                                 "10 vàng đổi 300.000 bạc khóa;" +
                                 "100 vàng đổi 4.000.000 bạc khóa;" +
                                 "1.000 vàng đổi 50.000.000 bạc khóa"));
-                addAction(list, "Đổi vàng sang bạc khóa", client -> client.session.serivce.OpenMenu(npc.id, 1, "", "Nhập số vàng cần đổi"));
+                addAction(list, "Đổi vàng sang bạc khóa", client -> client.session.serivce.OpenMenu(npc.id, 3, "", "Nhập số vàng cần đổi;" + "Bảng giá quy đổi"));
                 break;
             case 98:
                 addAction(list, "Vĩ thú", client -> client.session.serivce.OpenMenu(npc.id, 0,"",

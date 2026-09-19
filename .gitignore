@@ -1,0 +1,5 @@
+# IntelliJ IDEA / JetBrains project settings
+.idea/
+data/
+# Output / Build directory
+out/
