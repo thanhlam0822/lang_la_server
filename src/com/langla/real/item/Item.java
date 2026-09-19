@@ -18,6 +18,7 @@ import com.langla.server.lib.Message;
 import com.langla.server.lib.Writer;
 import com.tgame.model.Caption;
 import com.tgame.model.LangLa_hg;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -1250,8 +1251,12 @@ public class Item implements Cloneable {
         }
         if (this.getItemTemplate().type == 1) {
             if (client.mChar.arrItemBody[1] != null) {
-                return client.mChar.infoChar.idhe == client.mChar.arrItemBody[1].he || client.mChar.arrItemBody[15] != null && client.mChar.arrItemBody[15].he == client.mChar.arrItemBody[1].he;
+                Item wp = client.mChar.arrItemBody[1];
 
+                boolean checkChar = (client.mChar.infoChar.idhe == wp.he);
+                boolean checkSlot15 = (client.mChar.arrItemBody[15] != null && client.mChar.arrItemBody[15].he == wp.he);
+
+                return checkChar || checkSlot15;
             }
         }
         return false;

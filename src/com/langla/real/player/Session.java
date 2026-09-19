@@ -1,5 +1,6 @@
 package com.langla.real.player;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.langla.data.DataCache;
 import com.langla.data.DataCenter;
@@ -37,9 +38,6 @@ import com.langla.utlis.UTPKoolVN;
 
 import java.net.Socket;
 import java.util.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.regex.Pattern;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

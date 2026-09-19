@@ -5,14 +5,13 @@ import com.langla.data.NpcTemplate;
 import com.langla.lib.Utlis;
 import com.langla.real.baucua.BauCua;
 import com.langla.real.baucua.BauCuaTpl;
-import com.langla.real.player.Entity;
 import com.langla.real.map.Map;
 import com.langla.real.map.Map.Zone;
 import com.langla.real.player.Client;
+import com.langla.real.player.Entity;
 import com.langla.real.player.Player;
 import com.langla.real.task.TaskHandler;
 import com.langla.server.handler.IActionNpc;
-import com.langla.utlis.UTPKoolVN;
 
 import java.util.ArrayList;
 
@@ -185,6 +184,7 @@ public class Npc extends Entity implements Cloneable {
                                 "10 vàng đổi 300.000 bạc khóa;" +
                                 "100 vàng đổi 4.000.000 bạc khóa;" +
                                 "1.000 vàng đổi 50.000.000 bạc khóa"));
+                addAction(list, "Đổi vàng sang bạc khóa", client -> client.session.serivce.OpenMenu(npc.id, 1, "", "Nhập số vàng cần đổi"));
                 break;
             case 98:
                 addAction(list, "Vĩ thú", client -> client.session.serivce.OpenMenu(npc.id, 0,"",

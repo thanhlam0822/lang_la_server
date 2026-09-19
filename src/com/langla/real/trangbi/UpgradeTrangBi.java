@@ -55,7 +55,7 @@ public class UpgradeTrangBi {
                 character.client.session.serivce.ShowMessGold("Không đủ bạc");
                 return;
             }
-            if(character.infoChar.vang < bac){
+            if(character.infoChar.vang < vang){
                 character.client.session.serivce.ShowMessGold("Không đủ vàng");
                 return;
             }

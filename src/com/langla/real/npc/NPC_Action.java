@@ -162,7 +162,6 @@ public class NPC_Action {
                     break;//
                 case 5:
                     if(select == 0){
-
                         if(client.mChar.infoChar.vang < 50){
                             client.session.serivce.SendTextMenu("Không đủ vàng");
                         } else {

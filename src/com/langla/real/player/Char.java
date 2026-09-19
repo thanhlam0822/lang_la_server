@@ -616,10 +616,10 @@ public class Char extends Entity {
 
         // Phân loại idLoai vào từng Tab tương ứng
         int[][] tabMapping = {
-                {0, 1, 2, 7, 8},         // Tab 0: Phúc Lợi (Online, Đăng nhập, Thăng cấp, Tiêu)
-                {5, 6, 19, 21, 22},      // Tab 1: Quà Nạp (Nạp ngày, Nạp tuần...)
-                {3, 4, 20},              // Tab 2: Quà Rank (Nạp Rank, Rank Chung...)
-                {15, 16, 17},            // Tab 3: Đầu Tư (Gói Hào Hoa, Chí Tôn, Đầu tư)
+                {0, 1, 2, 7, 8},         // Tab 0: Phúc Lợi
+                {5, 6, 19, 21, 22},      // Tab 1: Quà Nạp
+                {3, 4, 20},              // Tab 2: Quà Rank
+                {15, 16, 17},            // Tab 3: Đầu Tư
                 {18}                     // Tab 4: Thẻ Tháng
         };
 
@@ -653,38 +653,112 @@ public class Char extends Entity {
                 String menuName = "Quà Tặng";
                 String bottomText = "Nhận quà ưu đãi";
 
-                // Đặt tên Menu trái và Text dưới cùng tùy theo idLoai
+                // Cờ xác định đây có phải là "gói mua" (cần nút Mua Ngay) hay không
+                boolean isGoiMua = false;
+                // Cờ xác định người chơi đã mua gói này chưa
+                boolean isDaMua = false;
+
                 switch (currentIdLoai) {
-                    case 0: menuName = "Quà Online"; bottomText = "Thời gian online: " + Utlis.millisecondsToMinutes(phucLoi.thoigianOnlineHomNay) + " phút"; break;
-                    case 1: menuName = "Đăng Nhập"; bottomText = "Đăng nhập liên tục: " + phucLoi.soNgayOnlineLienTuc + " ngày"; break;
-                    case 2: menuName = "Thăng Cấp"; bottomText = "Cấp độ hiện tại: " + this.level(); break;
-                    case 3: menuName = "Nạp Rank"; bottomText = "Đã tích lũy nạp: " + Utlis.numberFormat(phucLoi.vangNapTichLuy) + " vàng"; break;
-                    case 4: menuName = "Rank Chung"; bottomText = "Hạng hiện tại: " + DataCenter.gI().phucLoiInfo.RankCaoNhat; break;
-                    case 5: menuName = "Nạp Ngày"; bottomText = "Đã nạp hôm nay: " + Utlis.numberFormat(phucLoi.vangNapHomNay) + " vàng"; break;
-                    case 6: menuName = "Nạp Tuần"; bottomText = "Đã nạp tuần này: " + Utlis.numberFormat(phucLoi.vangNapTuan) + " vàng"; break;
-                    case 7: menuName = "Tiêu Ngày"; bottomText = "Đã tiêu hôm nay: " + Utlis.numberFormat(phucLoi.vangTieuHomNay) + " vàng"; break;
-                    case 8: menuName = "Tiêu Tuần"; bottomText = "Đã tiêu tuần này: " + Utlis.numberFormat(phucLoi.vangTieuTuan) + " vàng"; break;
-                    case 15: menuName = "Gói Hào Hoa"; bottomText = "Đặc quyền Hào Hoa"; break;
-                    case 16: menuName = "Gói Chí Tôn"; bottomText = "Đặc quyền Chí Tôn"; break;
-                    case 17: menuName = "Đầu Tư"; bottomText = "Tổng đầu tư: " + Utlis.numberFormat(DataCenter.gI().phucLoiInfo.TongDauTu); break;
-                    case 18: menuName = "Thẻ Tháng"; bottomText = "Tổng mua thẻ tháng: " + DataCenter.gI().phucLoiInfo.TongSoLanMuaTheThang; break;
-                    case 19: menuName = "Nạp Liên Tục"; bottomText = "Nạp liên tục: " + phucLoi.soNgayNapLienTuc + " ngày"; break;
-                    case 20: menuName = "Toàn Dân"; bottomText = "Quà tặng toàn server"; break;
-                    case 21: menuName = "Nạp 3 Mốc"; bottomText = "Đã nạp: " + Utlis.numberFormat(phucLoi.vangNapMoc); break;
-                    case 22: menuName = "Nạp Đơn"; bottomText = "Nạp đơn: " + Utlis.numberFormat(phucLoi.vangNapDon); break;
+                    // ===== Tab Phúc Lợi =====
+                    case 0:
+                        menuName = "Quà Online";
+                        bottomText = "Thời gian online: " + Utlis.millisecondsToMinutes(phucLoi.thoigianOnlineHomNay) + " phút";
+                        break;
+                    case 1:
+                        menuName = "Đăng Nhập";
+                        bottomText = "Đăng nhập liên tục: " + phucLoi.soNgayOnlineLienTuc + " ngày";
+                        break;
+                    case 2:
+                        menuName = "Thăng Cấp";
+                        bottomText = "Cấp độ hiện tại: " + this.level();
+                        break;
+                    case 7:
+                        menuName = "Tiêu Ngày";
+                        bottomText = "Đã tiêu hôm nay: " + Utlis.numberFormat(phucLoi.vangTieuHomNay) + " vàng";
+                        break;
+                    case 8:
+                        menuName = "Tiêu Tuần";
+                        bottomText = "Đã tiêu tuần này: " + Utlis.numberFormat(phucLoi.vangTieuTuan) + " vàng";
+                        break;
+
+                    // ===== Tab Quà Nạp =====
+                    case 5:
+                        menuName = "Nạp Ngày";
+                        bottomText = "Đã nạp hôm nay: " + Utlis.numberFormat(phucLoi.vangNapHomNay) + " vàng";
+                        break;
+                    case 6:
+                        menuName = "Nạp Tuần";
+                        bottomText = "Đã nạp tuần này: " + Utlis.numberFormat(phucLoi.vangNapTuan) + " vàng";
+                        break;
+                    case 19:
+                        menuName = "Nạp Liên Tục";
+                        bottomText = "Nạp liên tục: " + phucLoi.soNgayNapLienTuc + " ngày";
+                        break;
+                    case 21:
+                        menuName = "Nạp 3 Mốc";
+                        bottomText = "Đã nạp: " + Utlis.numberFormat(phucLoi.vangNapMoc);
+                        break;
+                    case 22:
+                        menuName = "Nạp Đơn";
+                        bottomText = "Nạp đơn: " + Utlis.numberFormat(phucLoi.vangNapDon);
+                        break;
+
+                    // ===== Tab Quà Rank =====
+                    case 3:
+                        menuName = "Nạp Rank";
+                        bottomText = "Đã tích lũy nạp: " + Utlis.numberFormat(phucLoi.vangNapTichLuy) + " vàng";
+                        break;
+                    case 4:
+                        menuName = "Rank Chung";
+                        bottomText = "Hạng hiện tại: " + DataCenter.gI().phucLoiInfo.RankCaoNhat;
+                        break;
+                    case 20:
+                        menuName = "Toàn Dân";
+                        bottomText = "Quà tặng toàn server";
+                        break;
+
+                    // ===== Tab Đầu Tư (gói mua) =====
+                    case 15:
+                        menuName = "Gói Hào Hoa";
+                        bottomText = "Đặc quyền Hào Hoa";
+                        isGoiMua = true;
+                        isDaMua = phucLoi.isGoiHaoHoa;
+                        break;
+                    case 16:
+                        menuName = "Gói Chí Tôn";
+                        bottomText = "Đặc quyền Chí Tôn";
+                        isGoiMua = true;
+                        isDaMua = phucLoi.isGoiChiTon;
+                        break;
+                    case 17:
+                        menuName = "Đầu Tư";
+                        bottomText = "Tổng đầu tư: " + Utlis.numberFormat(DataCenter.gI().phucLoiInfo.TongDauTu);
+                        isGoiMua = true;
+                        // Nếu có cờ isDauTu thì dùng, ở đây ví dụ theo TongDauTu > 0
+                        isDaMua = DataCenter.gI().phucLoiInfo.TongDauTu > 0;
+                        break;
+
+                    // ===== Tab Thẻ Tháng (gói mua) =====
+                    case 18:
+                        menuName = "Thẻ Tháng";
+                        bottomText = "Tổng mua thẻ tháng: " + DataCenter.gI().phucLoiInfo.TongSoLanMuaTheThang;
+                        isGoiMua = true;
+                        isDaMua = phucLoi.timeTheThang > 0;
+                        break;
                 }
 
-                msg.writeUTF(menuName); // Tên Nút bên trái
-                msg.writeInt(listPl.get(0).idRequest);
-                msg.writeUTF(bottomText); // Dòng text thống kê dưới cùng màn hình
+                msg.writeUTF(menuName);                        // Tên nút bên trái
+                msg.writeInt(listPl.get(0).idRequest);         // idRequest của nhóm
+                msg.writeUTF(bottomText);                      // Text thống kê dưới cùng
 
-                msg.writeBoolean(false); // isMuaGoi = false (Ép Client phải vẽ Lưới, tắt nút Mua Ngay)
-
-                msg.writeByte(listPl.size()); // Gửi số lượng phần thưởng trong nhóm để vẽ ô
+                // Gửi cờ isMuaGoi: true nếu là gói mua (hiện nút Mua Ngay), false nếu là lưới quà (chỉ hiện nút Nhận)
+                msg.writeBoolean(isGoiMua);
+                msg.writeInt(currentIdLoai);   // ← gửi idLoai
+                msg.writeByte(listPl.size()); // Số lượng phần thưởng trong nhóm
 
                 for (PhucLoiTpl pl : listPl) {
                     msg.writeShort((short) pl.idRequest);
-                    msg.writeUTF(pl.nameDieuKien); // Text tên mốc quà (VD: "10 phút", "1.000 Vàng")
+                    msg.writeUTF(pl.nameDieuKien);
                     msg.writeShort((short) 0);
 
                     Item item = new Item(pl.idItem, true, pl.amount);
@@ -694,11 +768,12 @@ public class Char extends Entity {
 
                     msg.writeBoolean(isCheckPhucLoi(pl)); // Sáng/tối nút Nhận
                 }
-                msg.writeBoolean(false); // isDaMua mặc định false
+
+                // Gửi cờ isDaMua cho cả nhóm (sau vòng lặp)
+                msg.writeBoolean(isDaMua);
             }
         }
     }
-
     public boolean isCheckPhucLoi(PhucLoiTpl pl_tpl) {
 
         if (isLogPhucLoi(pl_tpl.idRequest, pl_tpl.idLoai)) return false;
@@ -2013,7 +2088,7 @@ public class Char extends Entity {
 
     public void addExp(long exp) {
         if (infoChar.isKhoaCap) return;
-        exp *= 5; // open phải sửa x5 exp
+        exp *= 1; // open phải sửa x5 exp
         int level = this.level();
         this.infoChar.exp += exp;
         int levelNew = this.level();
@@ -5055,7 +5130,10 @@ public class Char extends Entity {
         int var3 = 0;
         int var4;
         if (array[index_item].isVuKhi()) {
-            for (var4 = array[index_item].level; var4 > 0; --var4) {
+            int level = array[index_item].level;
+            int maxIndex = Math.min(level, DataCenter.gI().bacKhoaUpgradeVuKhi.length - 1);
+
+            for (var4 = maxIndex; var4 > 0; --var4) {
                 var3 += DataCenter.gI().bacKhoaUpgradeVuKhi[var4];
                 var7 += DataCenter.gI().pointUpgradeVuKhi[var4];
             }

@@ -18,7 +18,7 @@ public class FamilyDB {
              PreparedStatement pstmt = con.prepareStatement(query);) {
             pstmt.setString(1, name);
             ResultSet red = pstmt.executeQuery();
-            return red == null || red.first();
+            return red == null || red.next();
         }  catch (SQLException e) {
             Utlis.logError(CharDB.class, e , "Co loi tai:\n" + e.getMessage());
         }
